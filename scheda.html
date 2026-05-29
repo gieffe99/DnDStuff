@@ -40,7 +40,216 @@
     .summary{position:sticky;top:86px;background:linear-gradient(135deg,rgba(255,248,232,.97),rgba(244,228,196,.95));color:var(--ink);border-radius:24px;padding:22px;border:2px solid rgba(89,53,25,.35);box-shadow:0 20px 60px rgba(0,0,0,.32),inset 0 0 35px rgba(89,53,25,.08);min-height:620px}.summary h2{color:#5a3517;margin-bottom:12px;font-size:26px}.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:14px}.summary-item,.summary-stat,.summary-box{border:1px solid rgba(89,53,25,.22);background:rgba(255,255,255,.35);border-radius:14px;padding:10px}.summary-item small,.summary-stat small,.summary-box small{display:block;color:#80613a;margin-bottom:4px;font-family:var(--ui)}.summary-item strong{font-size:16px}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.summary-stat{text-align:center}.summary-stat strong{font-size:23px}.summary-box{margin-bottom:10px}.summary-box div{font-family:var(--ui);line-height:1.45}.pdf-only{display:none}.note{margin-top:12px;color:#6f4d28;font-style:italic;line-height:1.45}
     @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes roll{0%{transform:rotate(0deg) scale(1)}30%{transform:rotate(18deg) scale(1.08)}60%{transform:rotate(-16deg) scale(.98)}100%{transform:rotate(360deg) scale(1)}}
     @media(max-width:1060px){.grid-main{grid-template-columns:1fr}.summary{position:static}}@media(max-width:760px){body{padding:18px 12px 34px}.hero,.section,.summary{padding:18px;border-radius:20px}.form-grid,.form-grid.three,.stats,.skills-grid,.choice-row,.spell-filters{grid-template-columns:1fr}.summary-grid,.summary-stats{grid-template-columns:repeat(2,1fr)}.name-row{grid-template-columns:1fr}.tabs{position:static}}
-    @media print{body{background:white!important;color:#111!important;padding:0}body:before,nav,.hero,.tabs,.section,.no-print{display:none!important}.wrap{width:100%;margin:0}.grid-main{display:block}.summary{display:block!important;position:static!important;box-shadow:none!important;border:2px solid #333!important;background:white!important;color:#111!important;min-height:auto;page-break-inside:avoid}.summary h2{color:#111!important}.summary-item,.summary-stat,.summary-box{background:white!important;border:1px solid #777!important}.pdf-only{display:block}.note{color:#333!important}}
+
+    .theme-modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.72);
+      backdrop-filter:blur(8px);
+      z-index:100;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:18px;
+    }
+    .theme-modal-backdrop.open{display:flex}
+    .theme-modal{
+      width:min(760px,100%);
+      border:1px solid var(--border);
+      border-radius:28px;
+      background:color-mix(in srgb,var(--panel) 92%,black);
+      box-shadow:0 30px 90px rgba(0,0,0,.65);
+      padding:24px;
+      animation:fadeIn .22s ease;
+    }
+    .theme-modal-head{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:14px;
+      margin-bottom:18px;
+    }
+    .theme-modal h2{
+      color:var(--accent2);
+      font-size:30px;
+      margin-bottom:6px;
+    }
+    .theme-modal p{
+      color:var(--muted);
+      font-family:var(--ui);
+      line-height:1.45;
+      font-size:14px;
+    }
+    .theme-close{
+      width:40px;
+      height:40px;
+      padding:0;
+      border-radius:50%;
+      background:rgba(0,0,0,.25);
+      border:1px solid var(--border);
+      color:var(--accent2);
+      font-size:20px;
+    }
+    .theme-card-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+    .theme-card{
+      position:relative;
+      min-height:116px;
+      border-radius:22px;
+      border:1px solid rgba(255,255,255,.16);
+      color:white;
+      text-align:left;
+      overflow:hidden;
+      padding:18px;
+      box-shadow:0 16px 38px rgba(0,0,0,.25);
+    }
+    .theme-card:hover{
+      transform:translateY(-6px) scale(1.01);
+      box-shadow:0 18px 42px color-mix(in srgb,var(--accent) 26%,transparent);
+    }
+    .theme-card.active{
+      outline:3px solid var(--accent2);
+      outline-offset:3px;
+    }
+    .theme-card::before{
+      content:"";
+      position:absolute;
+      width:120px;
+      height:120px;
+      right:-42px;
+      top:-42px;
+      border-radius:50%;
+      background:rgba(255,255,255,.16);
+      transition:transform .28s ease;
+    }
+    .theme-card:hover::before{transform:scale(1.45)}
+    .theme-card strong{
+      position:relative;
+      display:block;
+      font-family:var(--title);
+      font-size:22px;
+      margin-bottom:6px;
+    }
+    .theme-card span{
+      position:relative;
+      display:block;
+      font-family:var(--ui);
+      color:rgba(255,255,255,.78);
+      line-height:1.35;
+      font-weight:normal;
+      font-size:13px;
+    }
+    .theme-card.medieval-preview{background:linear-gradient(135deg,#251038,#2b1a0d 55%,#d9a441)}
+    .theme-card.steampunk-preview{background:linear-gradient(135deg,#140d08,#3a2413 55%,#c98232)}
+    .theme-card.cyberpunk-preview{background:linear-gradient(135deg,#020617,#25003f 50%,#ff2bd6)}
+    .theme-card.forest-preview{background:linear-gradient(135deg,#06110a,#12351e 55%,#86efac)}
+    .theme-card.vampire-preview{background:linear-gradient(135deg,#050505,#170008 55%,#dc2626)}
+    .print-report{display:none}
+    @media(max-width:720px){
+      .theme-card-grid{grid-template-columns:1fr}
+      .theme-modal{padding:18px}
+    }
+
+    @media print{
+      @page{
+        size:A4;
+        margin:12mm;
+      }
+      body{
+        background:white!important;
+        color:#111!important;
+        padding:0!important;
+        -webkit-print-color-adjust:exact;
+        print-color-adjust:exact;
+      }
+      body:before, .wrap{
+        display:none!important;
+      }
+      .print-report{
+        display:block!important;
+        font-family:Arial,Helvetica,sans-serif;
+        color:#111;
+      }
+      .print-page{
+        page-break-after:always;
+        break-after:page;
+        border:2px solid #333;
+        border-radius:12px;
+        padding:14px;
+        min-height:260mm;
+      }
+      .print-page:last-child{
+        page-break-after:auto;
+        break-after:auto;
+      }
+      .print-page h1{
+        color:#111!important;
+        font-size:24px!important;
+        line-height:1.1!important;
+        margin:0 0 12px!important;
+        text-shadow:none!important;
+        border-bottom:2px solid #333;
+        padding-bottom:8px;
+      }
+      .print-grid{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:8px;
+        margin-bottom:12px;
+      }
+      .print-grid.three{
+        grid-template-columns:repeat(3,1fr);
+      }
+      .print-box{
+        border:1px solid #777;
+        border-radius:8px;
+        padding:8px;
+        page-break-inside:avoid;
+        break-inside:avoid;
+      }
+      .print-box.full{
+        grid-column:1 / -1;
+      }
+      .print-box small{
+        display:block;
+        color:#666;
+        font-size:10px;
+        margin-bottom:3px;
+      }
+      .print-box strong{
+        font-size:14px;
+      }
+      .print-section-title{
+        font-size:18px;
+        margin:14px 0 8px;
+        color:#111;
+      }
+      .print-list{
+        line-height:1.45;
+        font-size:13px;
+      }
+      .print-text{
+        white-space:pre-wrap;
+        line-height:1.45;
+        font-size:13px;
+        min-height:80px;
+      }
+      .print-spell{
+        border:1px solid #777;
+        border-radius:8px;
+        padding:8px;
+        margin-bottom:7px;
+        page-break-inside:avoid;
+        break-inside:avoid;
+      }
+      .print-spell strong{
+        display:block;
+        margin-bottom:3px;
+      }
+    }
   </style>
 </head>
 <body class="medieval">
@@ -51,17 +260,47 @@
         <a class="nav-link" href="nomi.html">🪶 Generatore nomi</a>
       </div>
       <div class="nav-group">
-        <label class="chip" for="themeSelect">Tema</label>
-        <select id="themeSelect" class="theme-select">
-          <option value="medieval">Medievale arcano</option>
-          <option value="steampunk">Steampunk</option>
-          <option value="cyberpunk">Cyberpunk magico</option>
-          <option value="forest">Fantasy boschivo</option>
-          <option value="vampire">Gotico vampirico</option>
-        </select>
+        <button type="button" class="ghost" onclick="openThemeModal()">🎨 Tema</button>
         <button type="button" onclick="downloadPDF()">Scarica PDF</button>
       </div>
     </nav>
+
+
+    <div class="theme-modal-backdrop no-print" id="themeModal" role="dialog" aria-modal="true" aria-labelledby="themeModalTitle">
+      <div class="theme-modal">
+        <div class="theme-modal-head">
+          <div>
+            <h2 id="themeModalTitle">Scegli il tema</h2>
+            <p>Ogni tema cambia atmosfera, colori, bordi e dettagli della scheda.</p>
+          </div>
+          <button type="button" class="theme-close" onclick="closeThemeModal()" aria-label="Chiudi">×</button>
+        </div>
+
+        <div class="theme-card-grid">
+          <button type="button" class="theme-card medieval-preview active" data-theme="medieval">
+            <strong>⚔️ Medievale arcano</strong>
+            <span>Classico fantasy da pergamena, oro e magia antica.</span>
+          </button>
+          <button type="button" class="theme-card steampunk-preview" data-theme="steampunk">
+            <strong>⚙️ Steampunk</strong>
+            <span>Ottone, ingranaggi, fumo e officine alchemiche.</span>
+          </button>
+          <button type="button" class="theme-card cyberpunk-preview" data-theme="cyberpunk">
+            <strong>🧬 Cyberpunk magico</strong>
+            <span>Neon, incantesimi digitali e vicoli sintetici.</span>
+          </button>
+          <button type="button" class="theme-card forest-preview" data-theme="forest">
+            <strong>🌲 Fantasy boschivo</strong>
+            <span>Rune, radici, boschi antichi e magia naturale.</span>
+          </button>
+          <button type="button" class="theme-card vampire-preview" data-theme="vampire">
+            <strong>🩸 Gotico vampirico</strong>
+            <span>Castelli scuri, sangue, velluto e presagi pessimi.</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
 
     <section class="hero no-print">
       <div class="eyebrow">Dungeons & Dragons 5e · scheda interattiva</div>
@@ -141,6 +380,24 @@
     </section>
   </main>
 
+  <section class="print-report" id="printReport">
+    <article class="print-page">
+      <h1>Scheda Personaggio DnD 5e</h1>
+      <div id="printPageOne"></div>
+    </article>
+
+    <article class="print-page">
+      <h1>Note e testo libero</h1>
+      <div id="printPageTwo"></div>
+    </article>
+
+    <article class="print-page">
+      <h1>Incantesimi</h1>
+      <div id="printPageThree"></div>
+    </article>
+  </section>
+
+
   <script>
     const classFeatures={"Barbaro":{spellcaster:false,features:[[1,"Ira; Difesa senza armatura"],[2,"Attacco irruento; Percezione del pericolo"],[3,"Cammino primordiale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra; Movimento veloce"],[7,"Istinto ferino"],[9,"Critico brutale"],[11,"Ira implacabile"],[15,"Ira persistente"],[20,"Campione primordiale"]]},"Bardo":{spellcaster:true,features:[[1,"Ispirazione bardica; Incantesimi"],[2,"Factotum; Canto di riposo"],[3,"Collegio bardico; Maestria"],[4,"Aumento caratteristiche / Talento"],[5,"Fonte di ispirazione"],[6,"Controincanto"],[10,"Segreti magici"],[20,"Ispirazione superiore"]]},"Chierico":{spellcaster:true,features:[[1,"Incantesimi; Dominio divino"],[2,"Incanalare divinità"],[4,"Aumento caratteristiche / Talento"],[5,"Distruggere non morti"],[8,"Colpo divino / Incantesimi potenti"],[10,"Intervento divino"],[20,"Intervento divino migliorato"]]},"Druido":{spellcaster:true,features:[[1,"Druidico; Incantesimi"],[2,"Forma selvatica; Circolo druidico"],[4,"Aumento caratteristiche / Talento"],[18,"Corpo senza tempo; Incantesimi bestiali"],[20,"Arciduido"]]},"Guerriero":{spellcaster:false,features:[[1,"Stile di combattimento; Recuperare energie"],[2,"Azione impetuosa"],[3,"Archetipo marziale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[9,"Indomito"],[11,"Attacco extra migliorato"],[20,"Quattro attacchi"]]},"Ladro":{spellcaster:false,features:[[1,"Maestria; Attacco furtivo; Gergo ladresco"],[2,"Azione scaltra"],[3,"Archetipo ladresco"],[4,"Aumento caratteristiche / Talento"],[5,"Schivata prodigiosa"],[7,"Elusione"],[11,"Talento affidabile"],[20,"Colpo di fortuna"]]},"Mago":{spellcaster:true,features:[[1,"Incantesimi; Recupero arcano"],[2,"Tradizione arcana"],[4,"Aumento caratteristiche / Talento"],[18,"Padronanza degli incantesimi"],[20,"Incantesimi distintivi"]]},"Monaco":{spellcaster:false,features:[[1,"Difesa senza armatura; Arti marziali"],[2,"Ki; Movimento senza armatura"],[3,"Tradizione monastica; Deviare proiettili"],[4,"Aumento caratteristiche / Talento; Caduta lenta"],[5,"Attacco extra; Colpo stordente"],[7,"Elusione; Mente immobile"],[20,"Perfezione interiore"]]},"Paladino":{spellcaster:true,features:[[1,"Percezione del divino; Imposizione delle mani"],[2,"Stile di combattimento; Incantesimi; Punizione divina"],[3,"Giuramento sacro; Salute divina"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[6,"Aura di protezione"],[20,"Privilegio supremo del giuramento"]]},"Ranger":{spellcaster:true,features:[[1,"Nemico prescelto; Esploratore nato"],[2,"Stile di combattimento; Incantesimi"],[3,"Archetipo ranger"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[10,"Nascondersi in piena vista"],[20,"Sterminatore di nemici"]]},"Stregone":{spellcaster:true,features:[[1,"Incantesimi; Origine stregonesca"],[2,"Fonte di magia"],[3,"Metamagia"],[4,"Aumento caratteristiche / Talento"],[20,"Ripristino stregonesco"]]},"Warlock":{spellcaster:true,features:[[1,"Patrono ultraterreno; Magia del patto"],[2,"Suppliche occulte"],[3,"Dono del patto"],[4,"Aumento caratteristiche / Talento"],[11,"Arcanum mistico"],[20,"Maestro dell'occulto"]]}};
     const stats=[{key:"str",label:"Forza"},{key:"dex",label:"Destrezza"},{key:"con",label:"Costituzione"},{key:"int",label:"Intelligenza"},{key:"wis",label:"Saggezza"},{key:"cha",label:"Carisma"}];
@@ -149,11 +406,124 @@
     const spellProgression={full:[0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9],half:[0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5],pact:[0,1,1,2,2,3,3,4,4,5,5,5,5,5,5,5,5,5,5,5,5],none:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]};
     const casterType={"Bardo":"full","Chierico":"full","Druido":"full","Mago":"full","Stregone":"full","Paladino":"half","Ranger":"half","Warlock":"pact","Barbaro":"none","Guerriero":"none","Ladro":"none","Monaco":"none"};
     let method="roll";let selectedSpells=new Set();const $=id=>document.getElementById(id);
-    function init(){for(let i=1;i<=20;i++)$("level").innerHTML+=`<option value="${i}">Livello ${i}</option>`;Object.keys(classFeatures).forEach(c=>$("className").innerHTML+=`<option value="${c}">${c}</option>`);buildStats();buildSkills();bindTabs();bindInputs();bindPortrait();const p=new URLSearchParams(location.search);if(p.get("name"))$("charName").value=p.get("name");updateAll();}
+
+    function openThemeModal(){
+      $("themeModal").classList.add("open");
+    }
+    function closeThemeModal(){
+      $("themeModal").classList.remove("open");
+    }
+    function setTheme(theme){
+      document.body.className=theme;
+      document.querySelectorAll(".theme-card").forEach(card=>card.classList.toggle("active",card.dataset.theme===theme));
+      closeThemeModal();
+    }
+    document.addEventListener("click",e=>{
+      if(e.target && e.target.id==="themeModal") closeThemeModal();
+    });
+
+    function escHtml(value){
+      return String(value ?? "").replace(/[&<>"']/g, ch => ({
+        "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+      }[ch]));
+    }
+
+    function textValue(id, fallback="—"){
+      const el=$(id);
+      const value=el ? el.value.trim() : "";
+      return value || fallback;
+    }
+
+    function buildPrintReport(){
+      updateAll();
+
+      const profs=skills.filter(s=>s.proficient).map(s=>s.name);
+      const exps=skills.filter(s=>s.expertise).map(s=>s.name);
+      const selected=[...selectedSpells].map(k=>{
+        const [name, lvl]=k.split("|");
+        const spell=spellDB.find(sp=>sp.n===name && String(sp.l)===String(lvl));
+        return spell || {n:name,l:lvl,d:""};
+      });
+
+      const statBoxes=stats.map(st=>{
+        const value=$(st.key).value || "—";
+        const mod=value==="—" ? "—" : fmt(modifier(value));
+        return `<div class="print-box"><small>${st.label}</small><strong>${value}</strong><br><small>mod ${mod}</small></div>`;
+      }).join("");
+
+      const skillRows=skills.map(sk=>{
+        let total=modifier($(sk.stat).value);
+        const pb=proficiencyBonus();
+        if(sk.expertise) total+=pb*2;
+        else if(sk.proficient) total+=pb;
+        const tag=sk.expertise ? "★ maestria" : sk.proficient ? "● competenza" : "";
+        return `${sk.name} (${statLabel(sk.stat)}): ${fmt(total)} ${tag ? "· " + tag : ""}`;
+      }).join("<br>");
+
+      $("printPageOne").innerHTML=`
+        <div class="print-grid">
+          <div class="print-box"><small>Nome</small><strong>${escHtml(textValue("charName","Senza nome"))}</strong></div>
+          <div class="print-box"><small>Livello</small><strong>${escHtml($("level").value)}</strong></div>
+          <div class="print-box"><small>Razza / Specie</small><strong>${escHtml($("species").value)}</strong></div>
+          <div class="print-box"><small>Classe</small><strong>${escHtml($("className").value)}</strong></div>
+          <div class="print-box"><small>Background</small><strong>${escHtml($("background").value)}</strong></div>
+          <div class="print-box"><small>Allineamento</small><strong>${escHtml($("alignment").value)}</strong></div>
+          <div class="print-box"><small>Bonus competenza</small><strong>${fmt(proficiencyBonus())}</strong></div>
+          <div class="print-box"><small>Metodo caratteristiche</small><strong>${method==="roll" ? "Dadi" : "Libero"}</strong></div>
+        </div>
+
+        <h2 class="print-section-title">Caratteristiche</h2>
+        <div class="print-grid three">${statBoxes}</div>
+
+        <h2 class="print-section-title">Abilità</h2>
+        <div class="print-box full print-list">${skillRows}</div>
+
+        <h2 class="print-section-title">Competenze e maestrie</h2>
+        <div class="print-grid">
+          <div class="print-box"><small>Competenze</small>${escHtml(profs.length ? profs.join(", ") : "Nessuna")}</div>
+          <div class="print-box"><small>Maestrie</small>${escHtml(exps.length ? exps.join(", ") : "Nessuna")}</div>
+        </div>
+
+        <h2 class="print-section-title">Privilegi acquisiti</h2>
+        <div class="print-box full print-list">${$("sumFeatures").innerHTML || "—"}</div>
+      `;
+
+      $("printPageTwo").innerHTML=`
+        <div class="print-grid">
+          <div class="print-box full">
+            <small>Personalità, ideali, legami, difetti</small>
+            <div class="print-text">${escHtml(textValue("personality"))}</div>
+          </div>
+          <div class="print-box full">
+            <small>Backstory</small>
+            <div class="print-text">${escHtml(textValue("backstory"))}</div>
+          </div>
+          <div class="print-box full">
+            <small>Equipaggiamento / tesori</small>
+            <div class="print-text">${escHtml(textValue("equipment"))}</div>
+          </div>
+          <div class="print-box full">
+            <small>Riquadro libero</small>
+            <div class="print-text">${escHtml(textValue("freeNotes"))}</div>
+          </div>
+        </div>
+      `;
+
+      $("printPageThree").innerHTML = selected.length
+        ? selected.map(sp=>`
+            <div class="print-spell">
+              <strong>${escHtml(sp.n)} ${Number(sp.l)===0 ? "· Trucchetto" : "· Livello " + escHtml(sp.l)}</strong>
+              <span>${escHtml(sp.d)}</span>
+            </div>
+          `).join("")
+        : `<div class="print-box full">Nessun incantesimo selezionato.</div>`;
+    }
+
+    function init(){for(let i=1;i<=20;i++)$("level").innerHTML+=`<option value="${i}">Livello ${i}</option>`;Object.keys(classFeatures).forEach(c=>$("className").innerHTML+=`<option value="${c}">${c}</option>`);buildStats();buildSkills();bindTabs();bindInputs();bindPortrait();document.querySelectorAll(".theme-card").forEach(card=>card.onclick=()=>setTheme(card.dataset.theme));const p=new URLSearchParams(location.search);if(p.get("name"))$("charName").value=p.get("name");updateAll();}
     function buildStats(){$("statsGrid").innerHTML="";$("summaryStats").innerHTML="";stats.forEach(s=>{$("statsGrid").innerHTML+=`<div class="stat"><div class="stat-head"><span class="stat-name">${s.label}</span><span class="mod" id="${s.key}Mod">mod —</span></div><input id="${s.key}" type="number" min="3" max="30" placeholder="—" /></div>`;$("summaryStats").innerHTML+=`<div class="summary-stat"><small>${s.label}</small><strong id="sum_${s.key}">—</strong><small id="sum_${s.key}_mod">mod —</small></div>`})}
     function buildSkills(){$("skillsGrid").innerHTML="";skills.forEach((s,i)=>{$("skillsGrid").innerHTML+=`<div class="skill"><button class="prof-btn" type="button" id="prof_${i}" title="Competenza">●</button><button class="expert-btn" type="button" id="exp_${i}" title="Maestria">★</button><div><span class="skill-name">${s.name}</span><small>${statLabel(s.stat)}</small></div><div class="skill-total" id="skillTotal_${i}">—</div></div>`});skills.forEach((s,i)=>{$(`prof_${i}`).onclick=()=>toggleProficiency(i);$(`exp_${i}`).onclick=()=>toggleExpertise(i)})}
     function bindTabs(){document.querySelectorAll(".tab-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab-btn,.section").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active")})}
-    function bindInputs(){document.querySelectorAll("input,select,textarea").forEach(el=>{el.addEventListener("input",updateAll);el.addEventListener("change",updateAll)});$("themeSelect").onchange=e=>document.body.className=e.target.value;$("spellLevelFilter").onchange=renderSpells;$("spellSearch").oninput=renderSpells}
+    function bindInputs(){document.querySelectorAll("input,select,textarea").forEach(el=>{el.addEventListener("input",updateAll);el.addEventListener("change",updateAll)});$("spellLevelFilter").onchange=renderSpells;$("spellSearch").oninput=renderSpells}
     function bindPortrait(){$("portraitInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("portraitPreview").src=r.result;$("portraitPreview").classList.remove("hidden");$("portraitPlaceholder").classList.add("hidden")};r.readAsDataURL(f)}}
     function statLabel(k){return stats.find(s=>s.key===k)?.label||k}function modifier(v){const n=Number(v);return n?Math.floor((n-10)/2):0}function fmt(n){return n>=0?`+${n}`:`${n}`}function proficiencyBonus(){return Math.ceil(Number($("level").value)/4)+1}
     function toggleProficiency(i){skills[i].proficient=!skills[i].proficient;if(!skills[i].proficient)skills[i].expertise=false;updateAll()}function toggleExpertise(i){skills[i].expertise=!skills[i].expertise;if(skills[i].expertise)skills[i].proficient=true;updateAll()}
@@ -168,7 +538,7 @@
     function toggleSpell(k){selectedSpells.has(k)?selectedSpells.delete(k):selectedSpells.add(k);renderSpells();updateAll(false)}function clearSelectedSpells(){selectedSpells.clear();renderSpells();updateAll(false)}
     function updateSkills(){const pb=proficiencyBonus();skills.forEach((s,i)=>{let total=modifier($(s.stat).value);if(s.expertise)total+=pb*2;else if(s.proficient)total+=pb;$(`prof_${i}`).classList.toggle("active",s.proficient);$(`exp_${i}`).classList.toggle("active",s.expertise);$(`skillTotal_${i}`).textContent=fmt(total)});const profs=skills.filter(s=>s.proficient).map(s=>s.name),exps=skills.filter(s=>s.expertise).map(s=>s.name);$("sumSkillProfs").textContent=profs.length?profs.join(", "):"Nessuna";$("sumSkillExpertise").textContent=exps.length?exps.join(", "):"Nessuna"}
     function updateSummary(){$("sumName").textContent=$("charName").value.trim()||"Senza nome";$("sumLevel").textContent=$("level").value;$("sumSpecies").textContent=$("species").value;$("sumClass").textContent=$("className").value;$("sumBackground").textContent=$("background").value;$("sumAlignment").textContent=$("alignment").value;$("sumProf").textContent=fmt(proficiencyBonus());$("sumMethod").textContent=method==="roll"?"Dadi":"Libero";stats.forEach(s=>{const v=$(s.key).value,mod=v?fmt(modifier(v)):"—";$(`${s.key}Mod`).textContent=`mod ${mod}`;$(`sum_${s.key}`).textContent=v||"—";$(`sum_${s.key}_mod`).textContent=`mod ${mod}`});const selected=[...selectedSpells].map(k=>k.split("|")[0]);$("sumSpells").textContent=selected.length?selected.join(", "):"Nessuno";const quick=[$("personality").value.trim(),$("backstory").value.trim(),$("equipment").value.trim(),$("freeNotes").value.trim()].filter(Boolean).join(" | ");$("sumNotes").textContent=quick?quick.slice(0,700):"—"}
-    function updateAll(renderSpellList=true){updateSummary();updateSkills();renderFeatures();if(renderSpellList)renderSpells()}function downloadPDF(){updateAll();window.print()}
+    function updateAll(renderSpellList=true){updateSummary();updateSkills();renderFeatures();if(renderSpellList)renderSpells()}function downloadPDF(){buildPrintReport();setTimeout(()=>window.print(),80)}
     init();
   </script>
 </body>
