@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Creazione Scheda DnD 5e</title>
+  <style>
+    :root{
+      --bg1:#0d0710;
+      --bg2:#251038;
+      --bg3:#2b1a0d;
+      --paper:#f3e4c6;
+      --paper-dark:#d7bd86;
+      --ink:#2a160d;
+      --light:#fff8e8;
+      --text:#f8efe0;
+      --muted:#c9b89b;
+      --gold:#d9a441;
+      --gold2:#f4d27a;
+      --card:rgba(25,16,25,.88);
+      --border:rgba(244,210,122,.28);
+      --danger:#8b2635;
+      --green:#3f7d55;
+      --blue:#2f5d8c;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--text);
+      background:
+        radial-gradient(circle at 15% 15%, rgba(217,164,65,.15), transparent 25%),
+        radial-gradient(circle at 80% 8%, rgba(67,45,150,.18), transparent 25%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      padding:32px 16px;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size:36px 36px;
+      pointer-events:none;
+    }
+    .wrap{position:relative;z-index:1;width:min(1180px,100%);margin:0 auto}
+    nav{
+      display:flex;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    a,.link-btn{
+      color:var(--gold2);
+      text-decoration:none;
+    }
+    .nav-link{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding:10px 14px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      background:rgba(0,0,0,.22);
+    }
+    .hero{
+      border:1px solid var(--border);
+      background:rgba(16,8,19,.75);
+      border-radius:28px;
+      padding:26px;
+      box-shadow:0 25px 75px rgba(0,0,0,.45);
+      margin-bottom:18px;
+    }
+    .eyebrow{color:var(--gold2);letter-spacing:2px;text-transform:uppercase;font-size:12px;font-weight:bold;margin-bottom:8px}
+    h1{font-size:clamp(34px,6vw,62px);line-height:.95;margin-bottom:12px}
+    .subtitle{color:var(--muted);line-height:1.55;font-size:17px;max-width:780px}
+    .layout{
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:18px;
+    }
+    .panel{
+      border:1px solid var(--border);
+      background:var(--card);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 18px 50px rgba(0,0,0,.32);
+    }
+    .panel h2{
+      color:var(--gold2);
+      font-size:25px;
+      margin-bottom:16px;
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:14px;
+    }
+    label{
+      display:block;
+      color:var(--muted);
+      margin-bottom:7px;
+      font-size:14px;
+    }
+    input,select{
+      width:100%;
+      padding:12px 13px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.28);
+      color:var(--text);
+      outline:none;
+      font-size:16px;
+      font-family:Arial, sans-serif;
+    }
+    option{background:#1b1120;color:white}
+    input:focus,select:focus{border-color:var(--gold2);box-shadow:0 0 0 3px rgba(217,164,65,.12)}
+    .name-row{
+      display:grid;
+      grid-template-columns:1fr auto;
+      gap:10px;
+    }
+    button{
+      border:0;
+      border-radius:999px;
+      padding:12px 16px;
+      cursor:pointer;
+      color:#160d08;
+      background:linear-gradient(135deg,var(--gold2),var(--gold));
+      font-weight:bold;
+      transition:transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
+    button:hover{transform:translateY(-3px);filter:brightness(1.07);box-shadow:0 12px 24px rgba(217,164,65,.2)}
+    .ghost{
+      background:transparent;
+      color:var(--gold2);
+      border:1px solid var(--border);
+    }
+    .danger{
+      background:linear-gradient(135deg,#d85b69,#8b2635);
+      color:white;
+    }
+    .choice-row{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .choice{
+      text-align:left;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      border-radius:20px;
+      padding:18px;
+    }
+    .choice strong{display:block;color:var(--gold2);font-size:19px;margin-bottom:5px}
+    .choice span{color:var(--muted);font-weight:normal;line-height:1.4}
+    .choice.active{background:rgba(217,164,65,.14);box-shadow:inset 0 0 0 1px rgba(244,210,122,.4)}
+    .stats{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:12px;
+    }
+    .stat{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:14px;
+      background:rgba(0,0,0,.22);
+    }
+    .stat-head{
+      display:flex;
+      justify-content:space-between;
+      gap:10px;
+      align-items:center;
+      margin-bottom:9px;
+    }
+    .stat-name{color:var(--gold2);font-weight:bold}
+    .mod{color:var(--muted);font-size:14px}
+    .stat input{
+      text-align:center;
+      font-size:23px;
+      font-weight:bold;
+      font-family:Georgia, "Times New Roman", serif;
+    }
+    .roller{
+      margin-top:16px;
+      display:flex;
+      gap:14px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .dice-stage{
+      display:flex;
+      gap:10px;
+      align-items:center;
+      flex-wrap:wrap;
+      min-height:74px;
+    }
+    .die{
+      width:58px;
+      height:58px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#f8efd6,#d9a441);
+      color:#24140a;
+      box-shadow:0 12px 26px rgba(0,0,0,.35);
+      font-size:26px;
+      font-weight:bold;
+      position:relative;
+      transform-style:preserve-3d;
+    }
+    .die.rolling{animation:roll .65s ease infinite}
+    .roll-log{
+      margin-top:12px;
+      color:var(--muted);
+      line-height:1.5;
+      min-height:24px;
+    }
+    .summary{
+      background:
+        linear-gradient(135deg,rgba(255,248,232,.96),rgba(243,228,198,.92));
+      color:var(--ink);
+      border-radius:24px;
+      padding:22px;
+      border:2px solid rgba(89,53,25,.35);
+      box-shadow:inset 0 0 35px rgba(89,53,25,.08);
+      min-height:480px;
+    }
+    .summary h2{color:#5a3517}
+    .summary-grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:10px;
+      margin-bottom:16px;
+    }
+    .summary-item{
+      border:1px solid rgba(89,53,25,.22);
+      background:rgba(255,255,255,.35);
+      border-radius:14px;
+      padding:10px;
+    }
+    .summary-item small{
+      display:block;
+      color:#80613a;
+      margin-bottom:4px;
+      font-family:Arial,sans-serif;
+    }
+    .summary-item strong{font-size:17px}
+    .summary-stats{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:9px;
+    }
+    .summary-stat{
+      text-align:center;
+      border:1px solid rgba(89,53,25,.22);
+      border-radius:14px;
+      padding:10px;
+      background:rgba(255,255,255,.35);
+    }
+    .summary-stat small{display:block;color:#80613a;font-family:Arial,sans-serif}
+    .summary-stat strong{font-size:24px}
+    .note{
+      margin-top:15px;
+      color:#6f4d28;
+      font-style:italic;
+      line-height:1.5;
+    }
+    .hidden{display:none!important}
+    @keyframes roll{
+      0%{transform:rotate(0deg) scale(1)}
+      30%{transform:rotate(18deg) scale(1.08)}
+      60%{transform:rotate(-16deg) scale(.98)}
+      100%{transform:rotate(360deg) scale(1)}
+    }
+    @media(max-width:880px){
+      .layout{grid-template-columns:1fr}
+    }
+    @media(max-width:620px){
+      .form-grid,.stats,.choice-row,.summary-grid{grid-template-columns:1fr}
+      .summary-stats{grid-template-columns:repeat(2,1fr)}
+      .name-row{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav>
+      <a class="nav-link" href="index.html">← Archivio</a>
+      <a class="nav-link" href="nomi.html">🪶 Generatore nomi</a>
+    </nav>
+
+    <section class="hero">
+      <div class="eyebrow">Forgiatura personaggio · DnD 5e</div>
+      <h1>Crea la tua scheda</h1>
+      <p class="subtitle">
+        Compila i parametri principali, scegli come generare le caratteristiche e tieni d'occhio la pergamena a destra: si aggiorna mentre lavori.
+      </p>
+    </section>
+
+    <section class="layout">
+      <div class="panel">
+        <h2>Identità dell'avventuriero</h2>
+
+        <div class="form-grid">
+          <div>
+            <label for="charName">Nome personaggio</label>
+            <div class="name-row">
+              <input id="charName" type="text" placeholder="Es. Tharion Ombrafonda" />
+              <button type="button" onclick="openNameGenerator()">Genera</button>
+            </div>
+          </div>
+
+          <div>
+            <label for="level">Livello</label>
+            <select id="level">
+              <option value="1">Livello 1</option>
+              <option value="2">Livello 2</option>
+              <option value="3">Livello 3</option>
+              <option value="4">Livello 4</option>
+              <option value="5">Livello 5</option>
+              <option value="6">Livello 6</option>
+              <option value="7">Livello 7</option>
+              <option value="8">Livello 8</option>
+              <option value="9">Livello 9</option>
+              <option value="10">Livello 10</option>
+              <option value="11">Livello 11</option>
+              <option value="12">Livello 12</option>
+              <option value="13">Livello 13</option>
+              <option value="14">Livello 14</option>
+              <option value="15">Livello 15</option>
+              <option value="16">Livello 16</option>
+              <option value="17">Livello 17</option>
+              <option value="18">Livello 18</option>
+              <option value="19">Livello 19</option>
+              <option value="20">Livello 20</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="species">Razza / Specie</label>
+            <select id="species">
+              <option>Umano</option>
+              <option>Elfo</option>
+              <option>Mezzelfo</option>
+              <option>Nano</option>
+              <option>Halfling</option>
+              <option>Gnomo</option>
+              <option>Mezzorco</option>
+              <option>Tiefling</option>
+              <option>Dragonide</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="className">Classe</label>
+            <select id="className">
+              <option>Barbaro</option>
+              <option>Bardo</option>
+              <option>Chierico</option>
+              <option>Druido</option>
+              <option>Guerriero</option>
+              <option>Ladro</option>
+              <option>Mago</option>
+              <option>Monaco</option>
+              <option>Paladino</option>
+              <option>Ranger</option>
+              <option>Stregone</option>
+              <option>Warlock</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="background">Background</label>
+            <select id="background">
+              <option>Accolito</option>
+              <option>Artigiano di Gilda</option>
+              <option>Ciarlatano</option>
+              <option>Criminale</option>
+              <option>Eremita</option>
+              <option>Eroe Popolare</option>
+              <option>Intrattenitore</option>
+              <option>Marinaio</option>
+              <option>Nobile</option>
+              <option>Saggio</option>
+              <option>Soldato</option>
+              <option>Viandante</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="alignment">Allineamento</label>
+            <select id="alignment">
+              <option>Legale Buono</option>
+              <option>Neutrale Buono</option>
+              <option>Caotico Buono</option>
+              <option>Legale Neutrale</option>
+              <option>Neutrale Puro</option>
+              <option>Caotico Neutrale</option>
+              <option>Legale Malvagio</option>
+              <option>Neutrale Malvagio</option>
+              <option>Caotico Malvagio</option>
+            </select>
+          </div>
+        </div>
+
+        <h2 style="margin-top:24px">Metodo caratteristiche</h2>
+
+        <div class="choice-row">
+          <button class="choice active" type="button" id="rollChoice" onclick="setMethod('roll')">
+            <strong>🎲 Tiro dei dadi</strong>
+            <span>Simula 4d6, scarta il più basso e assegna il risultato alle caratteristiche.</span>
+          </button>
+          <button class="choice" type="button" id="freeChoice" onclick="setMethod('free')">
+            <strong>🖋 Metodo libero</strong>
+            <span>Inserisci manualmente i valori, utile per point buy, standard array o accordi col master.</span>
+          </button>
+        </div>
+
+        <div class="stats" id="statsGrid"></div>
+
+        <div id="rollTools" class="roller">
+          <button type="button" onclick="rollAllStats()">Tira tutte le caratteristiche</button>
+          <button class="ghost" type="button" onclick="clearStats()">Svuota valori</button>
+        </div>
+
+        <div class="dice-stage" id="diceStage" aria-label="Animazione dadi">
+          <div class="die">⚀</div>
+          <div class="die">⚁</div>
+          <div class="die">⚂</div>
+          <div class="die">⚃</div>
+        </div>
+
+        <div class="roll-log" id="rollLog">Metodo attivo: 4d6, scarta il risultato più basso.</div>
+      </div>
+
+      <aside class="summary">
+        <h2>Pergamena riepilogo</h2>
+
+        <div class="summary-grid">
+          <div class="summary-item"><small>Nome</small><strong id="sumName">Senza nome</strong></div>
+          <div class="summary-item"><small>Livello</small><strong id="sumLevel">1</strong></div>
+          <div class="summary-item"><small>Razza / Specie</small><strong id="sumSpecies">Umano</strong></div>
+          <div class="summary-item"><small>Classe</small><strong id="sumClass">Barbaro</strong></div>
+          <div class="summary-item"><small>Background</small><strong id="sumBackground">Accolito</strong></div>
+          <div class="summary-item"><small>Allineamento</small><strong id="sumAlignment">Legale Buono</strong></div>
+        </div>
+
+        <h2 style="margin-top:18px">Caratteristiche</h2>
+        <div class="summary-stats" id="summaryStats"></div>
+
+        <p class="note">
+          Nota: questa è una base estetica/funzionale. Nei prossimi step possiamo aggiungere competenze, tiri salvezza, CA, punti ferita, equipaggiamento, incantesimi e salvataggio della scheda.
+        </p>
+      </aside>
+    </section>
+  </main>
+
+  <script>
+    const stats = [
+      { key:"str", label:"Forza" },
+      { key:"dex", label:"Destrezza" },
+      { key:"con", label:"Costituzione" },
+      { key:"int", label:"Intelligenza" },
+      { key:"wis", label:"Saggezza" },
+      { key:"cha", label:"Carisma" }
+    ];
+
+    let method = "roll";
+
+    const statsGrid = document.getElementById("statsGrid");
+    const summaryStats = document.getElementById("summaryStats");
+    const diceStage = document.getElementById("diceStage");
+    const rollLog = document.getElementById("rollLog");
+
+    function modifier(score){
+      const n = Number(score);
+      if (!n) return "—";
+      const mod = Math.floor((n - 10) / 2);
+      return mod >= 0 ? `+${mod}` : `${mod}`;
+    }
+
+    function buildStats(){
+      statsGrid.innerHTML = "";
+      summaryStats.innerHTML = "";
+
+      stats.forEach(stat => {
+        const div = document.createElement("div");
+        div.className = "stat";
+        div.innerHTML = `
+          <div class="stat-head">
+            <span class="stat-name">${stat.label}</span>
+            <span class="mod" id="${stat.key}Mod">mod —</span>
+          </div>
+          <input id="${stat.key}" type="number" min="3" max="20" placeholder="—" />
+        `;
+        statsGrid.appendChild(div);
+
+        const sum = document.createElement("div");
+        sum.className = "summary-stat";
+        sum.innerHTML = `<small>${stat.label}</small><strong id="sum_${stat.key}">—</strong><small id="sum_${stat.key}_mod">mod —</small>`;
+        summaryStats.appendChild(sum);
+      });
+
+      stats.forEach(stat => {
+        document.getElementById(stat.key).addEventListener("input", updateSummary);
+      });
+    }
+
+    function setMethod(selected){
+      method = selected;
+      document.getElementById("rollChoice").classList.toggle("active", method === "roll");
+      document.getElementById("freeChoice").classList.toggle("active", method === "free");
+      document.getElementById("rollTools").classList.toggle("hidden", method !== "roll");
+      diceStage.classList.toggle("hidden", method !== "roll");
+      rollLog.textContent = method === "roll"
+        ? "Metodo attivo: 4d6, scarta il risultato più basso."
+        : "Metodo libero attivo: inserisci tu le caratteristiche.";
+    }
+
+    function rollD6(){
+      return Math.floor(Math.random() * 6) + 1;
+    }
+
+    function rollOneStat(){
+      const rolls = [rollD6(), rollD6(), rollD6(), rollD6()];
+      const sorted = [...rolls].sort((a,b) => a-b);
+      const total = sorted[1] + sorted[2] + sorted[3];
+      return { rolls, total, dropped: sorted[0] };
+    }
+
+    async function rollAllStats(){
+      const dice = document.querySelectorAll(".die");
+      dice.forEach(d => d.classList.add("rolling"));
+      rollLog.textContent = "I dadi rotolano sulla pergamena...";
+
+      await new Promise(resolve => setTimeout(resolve, 900));
+
+      const results = stats.map(() => rollOneStat());
+      stats.forEach((stat, index) => {
+        document.getElementById(stat.key).value = results[index].total;
+      });
+
+      dice.forEach((d, index) => {
+        const face = results[0].rolls[index];
+        d.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][face - 1];
+        d.classList.remove("rolling");
+      });
+
+      rollLog.innerHTML = results.map((r, i) => {
+        return `${stats[i].label}: ${r.rolls.join(", ")} → <strong>${r.total}</strong> <small>(scartato ${r.dropped})</small>`;
+      }).join("<br>");
+
+      updateSummary();
+    }
+
+    function clearStats(){
+      stats.forEach(stat => document.getElementById(stat.key).value = "");
+      rollLog.textContent = method === "roll"
+        ? "Valori svuotati. Puoi tirare di nuovo."
+        : "Valori svuotati.";
+      updateSummary();
+    }
+
+    function openNameGenerator(){
+      const species = encodeURIComponent(document.getElementById("species").value);
+      window.open(`nomi.html?species=${species}`, "_blank");
+    }
+
+    function updateSummary(){
+      document.getElementById("sumName").textContent = document.getElementById("charName").value.trim() || "Senza nome";
+      document.getElementById("sumLevel").textContent = document.getElementById("level").value;
+      document.getElementById("sumSpecies").textContent = document.getElementById("species").value;
+      document.getElementById("sumClass").textContent = document.getElementById("className").value;
+      document.getElementById("sumBackground").textContent = document.getElementById("background").value;
+      document.getElementById("sumAlignment").textContent = document.getElementById("alignment").value;
+
+      stats.forEach(stat => {
+        const value = document.getElementById(stat.key).value;
+        const mod = modifier(value);
+        document.getElementById(`${stat.key}Mod`).textContent = `mod ${mod}`;
+        document.getElementById(`sum_${stat.key}`).textContent = value || "—";
+        document.getElementById(`sum_${stat.key}_mod`).textContent = `mod ${mod}`;
+      });
+    }
+
+    document.querySelectorAll("input, select").forEach(el => {
+      el.addEventListener("input", updateSummary);
+      el.addEventListener("change", updateSummary);
+    });
+
+    buildStats();
+    updateSummary();
+
+    const params = new URLSearchParams(window.location.search);
+    const generatedName = params.get("name");
+    if (generatedName) {
+      document.getElementById("charName").value = generatedName;
+      updateSummary();
+    }
+  </script>
+</body>
+</html>

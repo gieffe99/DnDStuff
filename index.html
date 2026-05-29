@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivio degli Avventurieri</title>
+  <style>
+    :root {
+      --bg1:#100813;
+      --bg2:#251038;
+      --bg3:#3b1f16;
+      --gold:#d9a441;
+      --gold2:#f4d27a;
+      --ink:#f8efe0;
+      --muted:#c9b89b;
+      --card:rgba(28,18,28,.82);
+      --border:rgba(244,210,122,.28);
+      --green:#3f7d55;
+      --red:#8b2635;
+      --blue:#2f5d8c;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      min-height:100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      color:var(--ink);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(217,164,65,.18), transparent 28%),
+        radial-gradient(circle at 80% 10%, rgba(88,50,150,.24), transparent 26%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      padding:42px 18px;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:linear-gradient(rgba(255,255,255,.025) 1px, transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px, transparent 1px);
+      background-size:36px 36px;
+      pointer-events:none;
+    }
+    .wrap{position:relative;z-index:1;width:min(1050px,100%);margin:0 auto}
+    .hero{
+      border:1px solid var(--border);
+      border-radius:30px;
+      padding:38px;
+      background:rgba(16,8,19,.72);
+      box-shadow:0 25px 80px rgba(0,0,0,.48), inset 0 0 60px rgba(217,164,65,.06);
+      overflow:hidden;
+      position:relative;
+      margin-bottom:26px;
+    }
+    .hero:after{
+      content:"✦";
+      position:absolute;
+      right:32px;
+      top:22px;
+      font-size:96px;
+      color:rgba(244,210,122,.12);
+      transform:rotate(18deg);
+    }
+    .eyebrow{
+      color:var(--gold2);
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-size:13px;
+      font-weight:bold;
+      margin-bottom:10px;
+    }
+    h1{
+      font-size:clamp(42px,8vw,82px);
+      line-height:.9;
+      margin-bottom:18px;
+      text-shadow:0 0 28px rgba(217,164,65,.26);
+    }
+    .subtitle{
+      color:var(--muted);
+      max-width:700px;
+      font-size:18px;
+      line-height:1.6;
+    }
+    .grid{
+      display:grid;
+      grid-template-columns:repeat(2,1fr);
+      gap:20px;
+    }
+    .card{
+      display:block;
+      min-height:300px;
+      text-decoration:none;
+      color:var(--ink);
+      border:1px solid var(--border);
+      border-radius:26px;
+      background:var(--card);
+      padding:28px;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 20px 55px rgba(0,0,0,.35);
+      transition:transform .24s ease,border-color .24s ease, background .24s ease;
+    }
+    .card:before{
+      content:"";
+      position:absolute;
+      width:220px;
+      height:220px;
+      border-radius:50%;
+      right:-90px;
+      top:-90px;
+      background:var(--aura,rgba(217,164,65,.18));
+      transition:transform .35s ease;
+    }
+    .card:hover{
+      transform:translateY(-10px) scale(1.015);
+      border-color:rgba(244,210,122,.62);
+      background:rgba(40,25,40,.88);
+    }
+    .card:hover:before{transform:scale(1.5)}
+    .icon{
+      position:relative;
+      z-index:1;
+      width:76px;
+      height:76px;
+      border-radius:22px;
+      display:grid;
+      place-items:center;
+      font-size:38px;
+      background:rgba(244,210,122,.1);
+      border:1px solid var(--border);
+      margin-bottom:22px;
+      transition:transform .24s ease;
+    }
+    .card:hover .icon{transform:rotate(-7deg) scale(1.08)}
+    .card h2{position:relative;z-index:1;font-size:31px;margin-bottom:12px}
+    .card p{position:relative;z-index:1;color:var(--muted);line-height:1.58;font-size:17px}
+    .footer{
+      position:absolute;
+      left:28px;
+      right:28px;
+      bottom:24px;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      z-index:1;
+      color:var(--gold2);
+      font-weight:bold;
+    }
+    .pill{
+      border:1px solid var(--border);
+      color:var(--muted);
+      border-radius:999px;
+      padding:8px 12px;
+      font-size:13px;
+      font-weight:normal;
+      background:rgba(0,0,0,.18);
+    }
+    .sheet{--aura:rgba(63,125,85,.23)}
+    .names{--aura:rgba(47,93,140,.27)}
+    @media(max-width:760px){
+      body{padding:24px 14px}
+      .hero{padding:28px 22px}
+      .grid{grid-template-columns:1fr}
+      .card{min-height:270px}
+    }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Dungeons & Dragons 5e toolkit</div>
+      <h1>Archivio degli Avventurieri</h1>
+      <p class="subtitle">
+        Una piccola fucina fantasy per iniziare a creare personaggi: scegli parametri, genera caratteristiche e trova un nome degno di una taverna piena di guai.
+      </p>
+    </section>
+
+    <section class="grid" aria-label="Strumenti disponibili">
+      <a class="card sheet" href="scheda.html">
+        <div class="icon">📜</div>
+        <h2>Crea Scheda</h2>
+        <p>
+          Scegli razza, classe, background, allineamento e caratteristiche. Puoi tirare i dadi con animazione D6 o inserire i valori liberamente.
+        </p>
+        <div class="footer">
+          <span class="pill">scheda.html</span>
+          <span>Apri →</span>
+        </div>
+      </a>
+
+      <a class="card names" href="nomi.html">
+        <div class="icon">🪶</div>
+        <h2>Generatore Nomi</h2>
+        <p>
+          Crea nomi fantasy in base a razza, tono e stile del personaggio. Utile anche mentre compili la scheda.
+        </p>
+        <div class="footer">
+          <span class="pill">nomi.html</span>
+          <span>Apri →</span>
+        </div>
+      </a>
+    </section>
+  </main>
+</body>
+</html>
