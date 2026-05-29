@@ -4,44 +4,503 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Scheda Personaggio DnD 5e</title>
+
   <style>
     :root{
-      --bg1:#0d0710;--bg2:#251038;--bg3:#2b1a0d;--panel:rgba(25,16,25,.92);--text:#f8efe0;--muted:#c9b89b;
-      --accent:#d9a441;--accent2:#f4d27a;--accent3:#8b5cf6;--border:rgba(244,210,122,.32);--soft:rgba(217,164,65,.14);
-      --paper:#f4e4c4;--ink:#2a160d;--shadow:rgba(0,0,0,.45);--ui:Arial,Helvetica,sans-serif;--title:Georgia,"Times New Roman",serif;
+      --bg1:#0d0710;
+      --bg2:#251038;
+      --bg3:#2b1a0d;
+      --panel:rgba(25,16,25,.92);
+      --panel2:rgba(0,0,0,.25);
+      --text:#f8efe0;
+      --muted:#c9b89b;
+      --accent:#d9a441;
+      --accent2:#f4d27a;
+      --accent3:#8b5cf6;
+      --border:rgba(244,210,122,.32);
+      --soft:rgba(217,164,65,.14);
+      --paper:#f4e4c4;
+      --ink:#2a160d;
+      --shadow:rgba(0,0,0,.45);
+      --theme-symbol:"✦ ⚔︎ ✦";
+      --theme-watermark:"⚔︎";
+      --ui:Arial,Helvetica,sans-serif;
+      --title:Georgia,"Times New Roman",serif;
     }
-    body.medieval{--bg1:#0d0710;--bg2:#251038;--bg3:#2b1a0d;--panel:rgba(25,16,25,.92);--accent:#d9a441;--accent2:#f4d27a;--accent3:#8b5cf6;--border:rgba(244,210,122,.32);--soft:rgba(217,164,65,.14);--paper:#f4e4c4;--ink:#2a160d}
-    body.steampunk{--bg1:#140d08;--bg2:#3a2413;--bg3:#20120a;--panel:rgba(44,28,16,.92);--accent:#c98232;--accent2:#f6c177;--accent3:#7c4a24;--border:rgba(246,193,119,.36);--soft:rgba(201,130,50,.17);--paper:#ead5ae;--ink:#2a1608}
-    body.cyberpunk{--bg1:#020617;--bg2:#11113f;--bg3:#25003f;--panel:rgba(6,12,32,.92);--accent:#22d3ee;--accent2:#f0abfc;--accent3:#ff2bd6;--border:rgba(34,211,238,.38);--soft:rgba(255,43,214,.12);--paper:#d8fbff;--ink:#06131e}
-    body.forest{--bg1:#06110a;--bg2:#12351e;--bg3:#2b1f0c;--panel:rgba(10,28,16,.92);--accent:#86efac;--accent2:#facc15;--accent3:#22c55e;--border:rgba(134,239,172,.32);--soft:rgba(34,197,94,.13);--paper:#e2efd0;--ink:#102313}
-    body.vampire{--bg1:#050505;--bg2:#170008;--bg3:#2d020b;--panel:rgba(18,10,14,.94);--accent:#dc2626;--accent2:#fca5a5;--accent3:#7f1d1d;--border:rgba(252,165,165,.32);--soft:rgba(220,38,38,.14);--paper:#ead7d7;--ink:#25070b}
-    *{box-sizing:border-box;margin:0;padding:0}html{scroll-behavior:smooth}
-    body{min-height:100vh;color:var(--text);font-family:var(--title);background:radial-gradient(circle at 12% 16%,var(--soft),transparent 28%),radial-gradient(circle at 86% 8%,color-mix(in srgb,var(--accent3) 22%,transparent),transparent 26%),linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));padding:28px 16px 46px}
-    body:before{content:"";position:fixed;inset:0;background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);background-size:36px 36px;pointer-events:none}
-    .wrap{position:relative;z-index:1;width:min(1460px,100%);margin:0 auto}.hidden{display:none!important}
-    nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:16px}.nav-group{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
-    a,.nav-link,.chip{color:var(--accent2);text-decoration:none}.nav-link,.chip{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:999px;padding:10px 14px;background:rgba(0,0,0,.24);font-family:var(--ui);font-size:14px}
-    .theme-select{width:auto;min-width:185px;padding:10px 14px;border-radius:999px;color:var(--text);background:rgba(0,0,0,.28);border:1px solid var(--border)}
-    .hero{border:1px solid var(--border);background:var(--panel);border-radius:30px;padding:26px;box-shadow:0 24px 80px var(--shadow);margin-bottom:18px;overflow:hidden;position:relative}
-    .hero:after{content:"✦";position:absolute;right:30px;top:10px;font-size:110px;color:var(--soft);transform:rotate(18deg)}.eyebrow{color:var(--accent2);letter-spacing:2px;text-transform:uppercase;font-family:var(--ui);font-size:12px;font-weight:bold;margin-bottom:8px}
-    h1{font-size:clamp(36px,6vw,68px);line-height:.92;margin-bottom:12px;text-shadow:0 0 28px color-mix(in srgb,var(--accent) 32%,transparent)}.subtitle{color:var(--muted);line-height:1.55;font-size:17px;max-width:940px}
-    .tabs{position:sticky;top:0;z-index:20;display:flex;gap:8px;flex-wrap:wrap;padding:10px;border:1px solid var(--border);border-radius:22px;background:color-mix(in srgb,var(--panel) 88%,black);backdrop-filter:blur(12px);margin-bottom:18px}
-    .tab-btn,button{border:0;border-radius:999px;padding:11px 14px;cursor:pointer;font-family:var(--ui);font-weight:bold;transition:.18s ease;touch-action:manipulation}.tab-btn{background:transparent;color:var(--text);border:1px solid transparent;font-weight:normal}.tab-btn:hover,.tab-btn.active{background:var(--soft);border-color:var(--border);color:var(--accent2);transform:translateY(-2px)}
-    button{color:#160d08;background:linear-gradient(135deg,var(--accent2),var(--accent))}button:hover{transform:translateY(-3px);filter:brightness(1.07);box-shadow:0 12px 24px color-mix(in srgb,var(--accent) 26%,transparent)}.ghost{background:transparent;color:var(--accent2);border:1px solid var(--border)}.danger{background:linear-gradient(135deg,#d85b69,#9f273b);color:white}
-    .grid-main{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start}.section{display:none;border:1px solid var(--border);background:var(--panel);border-radius:24px;padding:22px;box-shadow:0 18px 55px rgba(0,0,0,.30);margin-bottom:18px}.section.active{display:block;animation:fadeIn .25s ease}.section h2{color:var(--accent2);font-size:27px;margin-bottom:16px}.section h3{color:var(--accent2);font-size:21px;margin:18px 0 10px}
-    .hint,.small{color:var(--muted);line-height:1.5;font-family:var(--ui);font-size:14px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.form-grid.three{grid-template-columns:repeat(3,1fr)}
-    label{display:block;color:var(--muted);margin-bottom:7px;font-family:var(--ui);font-size:13px}input,select,textarea{width:100%;padding:12px 13px;border-radius:14px;border:1px solid var(--border);background:rgba(0,0,0,.28);color:var(--text);outline:none;font-size:15px;font-family:var(--ui)}textarea{resize:vertical;min-height:120px;line-height:1.5}option{background:#171020;color:white}input:focus,select:focus,textarea:focus{border-color:var(--accent2);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent)}
-    .name-row{display:grid;grid-template-columns:1fr auto;gap:10px}.portrait-box{border:1px dashed var(--border);border-radius:22px;min-height:280px;background:rgba(0,0,0,.25);display:grid;place-items:center;overflow:hidden;position:relative;text-align:center;cursor:pointer}.portrait-box img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}.portrait-placeholder{position:relative;z-index:1;padding:22px;color:var(--muted);font-family:var(--ui)}.portrait-placeholder strong{display:block;color:var(--accent2);font-family:var(--title);font-size:22px;margin-bottom:8px}
-    .choice-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}.choice{text-align:left;border:1px solid var(--border);background:rgba(0,0,0,.22);color:var(--text);border-radius:20px;padding:18px}.choice strong{display:block;color:var(--accent2);font-size:19px;margin-bottom:5px;font-family:var(--title)}.choice span{color:var(--muted);font-weight:normal;line-height:1.4}.choice.active{background:var(--soft);box-shadow:inset 0 0 0 1px var(--border)}
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}.stat{border:1px solid var(--border);border-radius:18px;padding:14px;background:rgba(0,0,0,.22)}.stat-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px}.stat-name{color:var(--accent2);font-weight:bold}.mod{color:var(--muted);font-size:14px;font-family:var(--ui)}.stat input{text-align:center;font-size:23px;font-weight:bold;font-family:var(--title)}
-    .roller{margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}.dice-stage{display:flex;gap:10px;align-items:center;flex-wrap:wrap;min-height:74px;margin-top:12px}.die{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;background:linear-gradient(135deg,#f8efd6,var(--accent));color:#24140a;box-shadow:0 12px 26px rgba(0,0,0,.35);font-size:26px;font-weight:bold}.die.rolling{animation:roll .65s ease infinite}.roll-log{margin-top:12px;color:var(--muted);line-height:1.5;min-height:24px;font-family:var(--ui)}
-    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.skill{display:grid;grid-template-columns:auto auto 1fr auto;gap:10px;align-items:center;border:1px solid var(--border);border-radius:16px;padding:10px;background:rgba(0,0,0,.22)}.prof-btn,.expert-btn{width:34px;height:34px;padding:0;border-radius:50%;display:grid;place-items:center;background:transparent;color:var(--muted);border:1px solid var(--border);box-shadow:none}.prof-btn.active{background:var(--accent);color:#160d08}.expert-btn.active{background:linear-gradient(135deg,var(--accent2),var(--accent3));color:#130b08}.skill-name{font-weight:bold}.skill small{display:block;color:var(--muted);font-family:var(--ui);font-size:12px}.skill-total{font-size:20px;color:var(--accent2);font-weight:bold;text-align:right}
-    .features-list,.spell-list{display:grid;gap:10px}.feature,.spell{border:1px solid var(--border);border-radius:16px;padding:13px;background:rgba(0,0,0,.20)}.feature strong,.spell strong{color:var(--accent2);display:block;margin-bottom:5px}.feature span,.spell span{color:var(--muted);font-family:var(--ui);font-size:14px;line-height:1.45}.spell.selected{background:var(--soft);box-shadow:inset 0 0 0 1px var(--border)}.spell-top{display:flex;align-items:center;justify-content:space-between;gap:10px}.spell button{padding:8px 11px;font-size:13px}.spell-filters{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
-    .summary{position:sticky;top:86px;background:linear-gradient(135deg,rgba(255,248,232,.97),rgba(244,228,196,.95));color:var(--ink);border-radius:24px;padding:22px;border:2px solid rgba(89,53,25,.35);box-shadow:0 20px 60px rgba(0,0,0,.32),inset 0 0 35px rgba(89,53,25,.08);min-height:620px}.summary h2{color:#5a3517;margin-bottom:12px;font-size:26px}.summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:14px}.summary-item,.summary-stat,.summary-box{border:1px solid rgba(89,53,25,.22);background:rgba(255,255,255,.35);border-radius:14px;padding:10px}.summary-item small,.summary-stat small,.summary-box small{display:block;color:#80613a;margin-bottom:4px;font-family:var(--ui)}.summary-item strong{font-size:16px}.summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}.summary-stat{text-align:center}.summary-stat strong{font-size:23px}.summary-box{margin-bottom:10px}.summary-box div{font-family:var(--ui);line-height:1.45}.pdf-only{display:none}.note{margin-top:12px;color:#6f4d28;font-style:italic;line-height:1.45}
-    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}@keyframes roll{0%{transform:rotate(0deg) scale(1)}30%{transform:rotate(18deg) scale(1.08)}60%{transform:rotate(-16deg) scale(.98)}100%{transform:rotate(360deg) scale(1)}}
-    @media(max-width:1060px){.grid-main{grid-template-columns:1fr}.summary{position:static}}@media(max-width:760px){body{padding:18px 12px 34px}.hero,.section,.summary{padding:18px;border-radius:20px}.form-grid,.form-grid.three,.stats,.skills-grid,.choice-row,.spell-filters{grid-template-columns:1fr}.summary-grid,.summary-stats{grid-template-columns:repeat(2,1fr)}.name-row{grid-template-columns:1fr}.tabs{position:static}}
 
-    .theme-modal-backdrop{
+    body.medieval{
+      --bg1:#0d0710;--bg2:#251038;--bg3:#2b1a0d;--panel:rgba(25,16,25,.92);
+      --accent:#d9a441;--accent2:#f4d27a;--accent3:#8b5cf6;--border:rgba(244,210,122,.32);
+      --soft:rgba(217,164,65,.14);--paper:#f4e4c4;--ink:#2a160d;--theme-symbol:"✦ ⚔︎ ✦";--theme-watermark:"⚔︎";
+    }
+    body.steampunk{
+      --bg1:#140d08;--bg2:#3a2413;--bg3:#20120a;--panel:rgba(44,28,16,.92);
+      --accent:#c98232;--accent2:#f6c177;--accent3:#7c4a24;--border:rgba(246,193,119,.36);
+      --soft:rgba(201,130,50,.17);--paper:#ead5ae;--ink:#2a1608;--theme-symbol:"⚙︎ ◈ ⚙︎";--theme-watermark:"⚙︎";
+    }
+    body.cyberpunk{
+      --bg1:#020617;--bg2:#11113f;--bg3:#25003f;--panel:rgba(6,12,32,.92);
+      --accent:#22d3ee;--accent2:#f0abfc;--accent3:#ff2bd6;--border:rgba(34,211,238,.38);
+      --soft:rgba(255,43,214,.12);--paper:#d8fbff;--ink:#06131e;--theme-symbol:"⌬ ▣ ⌬";--theme-watermark:"⌬";
+    }
+    body.forest{
+      --bg1:#06110a;--bg2:#12351e;--bg3:#2b1f0c;--panel:rgba(10,28,16,.92);
+      --accent:#86efac;--accent2:#facc15;--accent3:#22c55e;--border:rgba(134,239,172,.32);
+      --soft:rgba(34,197,94,.13);--paper:#e2efd0;--ink:#102313;--theme-symbol:"☘︎ ✦ ☘︎";--theme-watermark:"☘︎";
+    }
+    body.vampire{
+      --bg1:#050505;--bg2:#170008;--bg3:#2d020b;--panel:rgba(18,10,14,.94);
+      --accent:#dc2626;--accent2:#fca5a5;--accent3:#7f1d1d;--border:rgba(252,165,165,.32);
+      --soft:rgba(220,38,38,.14);--paper:#ead7d7;--ink:#25070b;--theme-symbol:"☾ 🩸 ☽";--theme-watermark:"☾";
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      min-height:100vh;
+      color:var(--text);
+      font-family:var(--title);
+      background:
+        radial-gradient(circle at 12% 16%,var(--soft),transparent 28%),
+        radial-gradient(circle at 86% 8%,color-mix(in srgb,var(--accent3) 22%,transparent),transparent 26%),
+        linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
+      padding:28px 16px 46px;
+      overflow-x:hidden;
+    }
+    body:before{
+      content:"";
+      position:fixed;
+      inset:0;
+      background-image:
+        linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+      background-size:36px 36px;
+      pointer-events:none;
+      z-index:0;
+    }
+    body:after{
+      content:var(--theme-symbol);
+      position:fixed;
+      right:-26px;
+      bottom:22px;
+      font-size:clamp(90px,18vw,230px);
+      color:var(--soft);
+      opacity:.65;
+      transform:rotate(-14deg);
+      pointer-events:none;
+      z-index:0;
+      letter-spacing:-16px;
+    }
+    .wrap{position:relative;z-index:1;width:min(1480px,100%);margin:0 auto}
+    .hidden{display:none!important}
+    a{color:var(--accent2);text-decoration:none}
+
+    nav{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:16px;
+    }
+    .nav-group{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+    .nav-link,.chip{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border:1px solid var(--border);
+      border-radius:999px;
+      padding:10px 14px;
+      background:rgba(0,0,0,.24);
+      color:var(--accent2);
+      font-family:var(--ui);
+      font-size:14px;
+    }
+
+    button{
+      border:0;
+      border-radius:999px;
+      padding:11px 14px;
+      cursor:pointer;
+      color:#160d08;
+      background:linear-gradient(135deg,var(--accent2),var(--accent));
+      font-weight:bold;
+      font-family:var(--ui);
+      transition:transform .18s ease,filter .18s ease,box-shadow .18s ease;
+      touch-action:manipulation;
+      -webkit-tap-highlight-color:transparent;
+    }
+    button:hover{
+      transform:translateY(-3px);
+      filter:brightness(1.07);
+      box-shadow:0 12px 24px color-mix(in srgb,var(--accent) 26%,transparent);
+    }
+    .ghost{background:transparent;color:var(--accent2);border:1px solid var(--border)}
+    .danger{background:linear-gradient(135deg,#d85b69,#9f273b);color:white}
+
+    .hero{
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:30px;
+      padding:26px;
+      box-shadow:0 24px 80px var(--shadow);
+      margin-bottom:18px;
+      overflow:hidden;
+      position:relative;
+    }
+    .hero:after{
+      content:var(--theme-watermark);
+      position:absolute;
+      right:30px;
+      top:0;
+      font-size:120px;
+      color:var(--soft);
+      transform:rotate(18deg);
+      pointer-events:none;
+    }
+    .eyebrow{
+      color:var(--accent2);
+      letter-spacing:2px;
+      text-transform:uppercase;
+      font-family:var(--ui);
+      font-size:12px;
+      font-weight:bold;
+      margin-bottom:8px;
+    }
+    h1{
+      font-size:clamp(36px,6vw,68px);
+      line-height:.92;
+      margin-bottom:12px;
+      text-shadow:0 0 28px color-mix(in srgb,var(--accent) 32%,transparent);
+    }
+    .subtitle{color:var(--muted);line-height:1.55;font-size:17px;max-width:980px}
+
+    .tabs{
+      position:sticky;
+      top:0;
+      z-index:20;
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      padding:10px;
+      border:1px solid var(--border);
+      border-radius:22px;
+      background:color-mix(in srgb,var(--panel) 88%,black);
+      backdrop-filter:blur(12px);
+      margin-bottom:18px;
+    }
+    .tab-btn{
+      background:transparent;
+      color:var(--text);
+      border:1px solid transparent;
+      border-radius:999px;
+      padding:10px 13px;
+      cursor:pointer;
+      font-family:var(--ui);
+      font-size:14px;
+      transition:.18s ease;
+    }
+    .tab-btn:hover,.tab-btn.active{
+      background:var(--soft);
+      border-color:var(--border);
+      color:var(--accent2);
+      transform:translateY(-2px);
+    }
+
+    .grid-main{
+      display:grid;
+      grid-template-columns:1.15fr .85fr;
+      gap:18px;
+      align-items:start;
+    }
+    .section{
+      display:none;
+      border:1px solid var(--border);
+      background:var(--panel);
+      border-radius:24px;
+      padding:22px;
+      box-shadow:0 18px 55px rgba(0,0,0,.30);
+      margin-bottom:18px;
+      position:relative;
+      overflow:hidden;
+    }
+    .section:after{
+      content:var(--theme-watermark);
+      position:absolute;
+      right:16px;
+      bottom:-12px;
+      font-size:84px;
+      opacity:.08;
+      pointer-events:none;
+    }
+    .section.active{display:block;animation:fadeIn .25s ease}
+    .section h2{color:var(--accent2);font-size:27px;margin-bottom:16px}
+    .section h3{color:var(--accent2);font-size:21px;margin:18px 0 10px}
+    .hint,.small{color:var(--muted);line-height:1.5;font-family:var(--ui);font-size:14px}
+
+    .form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+    .form-grid.three{grid-template-columns:repeat(3,1fr)}
+    label{display:block;color:var(--muted);margin-bottom:7px;font-family:var(--ui);font-size:13px}
+    input,textarea{
+      width:100%;
+      padding:12px 13px;
+      border-radius:14px;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.28);
+      color:var(--text);
+      outline:none;
+      font-size:15px;
+      font-family:var(--ui);
+    }
+    textarea{resize:vertical;min-height:120px;line-height:1.5}
+    input:focus,textarea:focus{
+      border-color:var(--accent2);
+      box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 18%,transparent);
+    }
+    .name-row{display:grid;grid-template-columns:1fr auto;gap:10px}
+
+    .select-card{
+      width:100%;
+      text-align:left;
+      padding:15px;
+      border-radius:18px;
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .select-card:hover{box-shadow:0 12px 24px color-mix(in srgb,var(--accent) 16%,transparent)}
+    .select-card small{
+      display:block;
+      color:var(--muted);
+      font-weight:normal;
+      margin-top:4px;
+    }
+
+    .class-row{
+      display:grid;
+      grid-template-columns:1fr 120px auto;
+      gap:10px;
+      align-items:end;
+      margin-bottom:10px;
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:12px;
+      background:rgba(0,0,0,.20);
+    }
+    .class-level input{text-align:center}
+    .level-total{
+      padding:10px 12px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:var(--soft);
+      color:var(--accent2);
+      font-family:var(--ui);
+      margin-top:10px;
+      display:inline-block;
+    }
+
+    .portrait-box{
+      border:1px dashed var(--border);
+      border-radius:22px;
+      min-height:280px;
+      background:rgba(0,0,0,.25);
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      position:relative;
+      text-align:center;
+      cursor:pointer;
+    }
+    .portrait-box img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      position:absolute;
+      inset:0;
+    }
+    .portrait-placeholder{
+      position:relative;
+      z-index:1;
+      padding:22px;
+      color:var(--muted);
+      font-family:var(--ui);
+    }
+    .portrait-placeholder strong{
+      display:block;
+      color:var(--accent2);
+      font-family:var(--title);
+      font-size:22px;
+      margin-bottom:8px;
+    }
+
+    .choice-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:18px}
+    .choice{
+      text-align:left;
+      border:1px solid var(--border);
+      background:rgba(0,0,0,.22);
+      color:var(--text);
+      border-radius:20px;
+      padding:18px;
+    }
+    .choice strong{display:block;color:var(--accent2);font-size:19px;margin-bottom:5px;font-family:var(--title)}
+    .choice span{color:var(--muted);font-weight:normal;line-height:1.4}
+    .choice.active{background:var(--soft);box-shadow:inset 0 0 0 1px var(--border)}
+
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .stat{
+      border:1px solid var(--border);
+      border-radius:18px;
+      padding:14px;
+      background:rgba(0,0,0,.22);
+    }
+    .stat-head{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:9px}
+    .stat-name{color:var(--accent2);font-weight:bold}
+    .mod{color:var(--muted);font-size:14px;font-family:var(--ui)}
+    .stat input{text-align:center;font-size:23px;font-weight:bold;font-family:var(--title)}
+    .roller{margin-top:16px;display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+    .dice-stage{display:flex;gap:10px;align-items:center;flex-wrap:wrap;min-height:74px;margin-top:12px}
+    .die{
+      width:58px;
+      height:58px;
+      border-radius:16px;
+      display:grid;
+      place-items:center;
+      background:linear-gradient(135deg,#f8efd6,var(--accent));
+      color:#24140a;
+      box-shadow:0 12px 26px rgba(0,0,0,.35);
+      font-size:26px;
+      font-weight:bold;
+    }
+    .die.rolling{animation:roll .65s ease infinite}
+    .roll-log{margin-top:12px;color:var(--muted);line-height:1.5;min-height:24px;font-family:var(--ui)}
+
+    .derived-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:12px;
+      margin-top:16px;
+    }
+    .derived-box{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:12px;
+      background:rgba(0,0,0,.22);
+    }
+    .derived-box small{color:var(--muted);display:block;font-family:var(--ui);margin-bottom:4px}
+    .derived-box strong{color:var(--accent2);font-size:22px}
+
+    .skills-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+    .skill{
+      display:grid;
+      grid-template-columns:auto auto 1fr auto;
+      gap:10px;
+      align-items:center;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:10px;
+      background:rgba(0,0,0,.22);
+    }
+    .prof-btn,.expert-btn{
+      width:34px;
+      height:34px;
+      padding:0;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      background:transparent;
+      color:var(--muted);
+      border:1px solid var(--border);
+      box-shadow:none;
+    }
+    .prof-btn.active{background:var(--accent);color:#160d08}
+    .expert-btn.active{background:linear-gradient(135deg,var(--accent2),var(--accent3));color:#130b08}
+    .skill-name{font-weight:bold}
+    .skill small{display:block;color:var(--muted);font-family:var(--ui);font-size:12px}
+    .skill-total{font-size:20px;color:var(--accent2);font-weight:bold;text-align:right}
+
+    .features-list,.spell-list{display:grid;gap:10px}
+    .feature,.spell{
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:13px;
+      background:rgba(0,0,0,.20);
+    }
+    .feature strong,.spell strong{color:var(--accent2);display:block;margin-bottom:5px}
+    .feature span,.spell span{color:var(--muted);font-family:var(--ui);font-size:14px;line-height:1.45}
+    .spell.selected{background:var(--soft);box-shadow:inset 0 0 0 1px var(--border)}
+    .spell-top{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .spell button{padding:8px 11px;font-size:13px}
+    .spell-filters{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:14px}
+
+    .caster-cloud{
+      border:1px solid var(--border);
+      background:var(--soft);
+      border-radius:28px 18px 28px 18px;
+      padding:14px;
+      margin-bottom:14px;
+      box-shadow:inset 0 0 24px rgba(255,255,255,.04);
+    }
+    .caster-cloud h3{margin:0 0 8px;color:var(--accent2)}
+    .caster-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:10px;
+    }
+    .caster-pill{
+      border:1px solid var(--border);
+      border-radius:14px;
+      padding:10px;
+      background:rgba(0,0,0,.18);
+      font-family:var(--ui);
+    }
+    .caster-pill small{display:block;color:var(--muted);font-size:12px;margin-bottom:3px}
+    .caster-pill strong{color:var(--accent2)}
+
+    .summary{
+      position:sticky;
+      top:86px;
+      background:linear-gradient(135deg,rgba(255,248,232,.97),rgba(244,228,196,.95));
+      color:var(--ink);
+      border-radius:24px;
+      padding:22px;
+      border:2px solid rgba(89,53,25,.35);
+      box-shadow:0 20px 60px rgba(0,0,0,.32),inset 0 0 35px rgba(89,53,25,.08);
+      min-height:620px;
+      overflow:hidden;
+    }
+    .summary:after{
+      content:var(--theme-watermark);
+      position:absolute;
+      right:16px;
+      bottom:8px;
+      font-size:110px;
+      opacity:.07;
+      pointer-events:none;
+    }
+    .summary h2{color:#5a3517;margin-bottom:12px;font-size:26px}
+    .summary-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px;margin-bottom:14px}
+    .summary-item,.summary-stat,.summary-box{
+      border:1px solid rgba(89,53,25,.22);
+      background:rgba(255,255,255,.35);
+      border-radius:14px;
+      padding:10px;
+    }
+    .summary-item small,.summary-stat small,.summary-box small{
+      display:block;
+      color:#80613a;
+      margin-bottom:4px;
+      font-family:var(--ui);
+    }
+    .summary-item strong{font-size:16px}
+    .summary-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+    .summary-stat{text-align:center}
+    .summary-stat strong{font-size:23px}
+    .summary-box{margin-bottom:10px}
+    .summary-box div{font-family:var(--ui);line-height:1.45}
+    .note{margin-top:12px;color:#6f4d28;font-style:italic;line-height:1.45}
+
+    .modal-backdrop{
       position:fixed;
       inset:0;
       background:rgba(0,0,0,.72);
@@ -52,9 +511,11 @@
       justify-content:center;
       padding:18px;
     }
-    .theme-modal-backdrop.open{display:flex}
-    .theme-modal{
-      width:min(760px,100%);
+    .modal-backdrop.open{display:flex}
+    .modal{
+      width:min(860px,100%);
+      max-height:90vh;
+      overflow:auto;
       border:1px solid var(--border);
       border-radius:28px;
       background:color-mix(in srgb,var(--panel) 92%,black);
@@ -62,25 +523,16 @@
       padding:24px;
       animation:fadeIn .22s ease;
     }
-    .theme-modal-head{
+    .modal-head{
       display:flex;
       justify-content:space-between;
       align-items:flex-start;
       gap:14px;
       margin-bottom:18px;
     }
-    .theme-modal h2{
-      color:var(--accent2);
-      font-size:30px;
-      margin-bottom:6px;
-    }
-    .theme-modal p{
-      color:var(--muted);
-      font-family:var(--ui);
-      line-height:1.45;
-      font-size:14px;
-    }
-    .theme-close{
+    .modal h2{color:var(--accent2);font-size:30px;margin-bottom:6px}
+    .modal p{color:var(--muted);font-family:var(--ui);line-height:1.45;font-size:14px}
+    .modal-close{
       width:40px;
       height:40px;
       padding:0;
@@ -90,14 +542,10 @@
       color:var(--accent2);
       font-size:20px;
     }
-    .theme-card-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:12px;
-    }
-    .theme-card{
+    .card-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .pick-card,.theme-card{
       position:relative;
-      min-height:116px;
+      min-height:104px;
       border-radius:22px;
       border:1px solid rgba(255,255,255,.16);
       color:white;
@@ -105,16 +553,17 @@
       overflow:hidden;
       padding:18px;
       box-shadow:0 16px 38px rgba(0,0,0,.25);
+      background:linear-gradient(135deg,color-mix(in srgb,var(--bg2) 80%,black),color-mix(in srgb,var(--accent) 45%,black));
     }
-    .theme-card:hover{
+    .pick-card:hover,.theme-card:hover{
       transform:translateY(-6px) scale(1.01);
       box-shadow:0 18px 42px color-mix(in srgb,var(--accent) 26%,transparent);
     }
-    .theme-card.active{
+    .pick-card.active,.theme-card.active{
       outline:3px solid var(--accent2);
       outline-offset:3px;
     }
-    .theme-card::before{
+    .pick-card:before,.theme-card:before{
       content:"";
       position:absolute;
       width:120px;
@@ -125,19 +574,19 @@
       background:rgba(255,255,255,.16);
       transition:transform .28s ease;
     }
-    .theme-card:hover::before{transform:scale(1.45)}
-    .theme-card strong{
+    .pick-card:hover:before,.theme-card:hover:before{transform:scale(1.45)}
+    .pick-card strong,.theme-card strong{
       position:relative;
       display:block;
       font-family:var(--title);
-      font-size:22px;
+      font-size:21px;
       margin-bottom:6px;
     }
-    .theme-card span{
+    .pick-card span,.theme-card span{
       position:relative;
       display:block;
       font-family:var(--ui);
-      color:rgba(255,255,255,.78);
+      color:rgba(255,255,255,.80);
       line-height:1.35;
       font-weight:normal;
       font-size:13px;
@@ -148,16 +597,31 @@
     .theme-card.forest-preview{background:linear-gradient(135deg,#06110a,#12351e 55%,#86efac)}
     .theme-card.vampire-preview{background:linear-gradient(135deg,#050505,#170008 55%,#dc2626)}
     .print-report{display:none}
-    @media(max-width:720px){
-      .theme-card-grid{grid-template-columns:1fr}
-      .theme-modal{padding:18px}
+
+    @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes roll{
+      0%{transform:rotate(0deg) scale(1)}
+      30%{transform:rotate(18deg) scale(1.08)}
+      60%{transform:rotate(-16deg) scale(.98)}
+      100%{transform:rotate(360deg) scale(1)}
+    }
+
+    @media(max-width:1060px){
+      .grid-main{grid-template-columns:1fr}
+      .summary{position:static}
+    }
+    @media(max-width:760px){
+      body{padding:18px 12px 34px}
+      .hero,.section,.summary{padding:18px;border-radius:20px}
+      .form-grid,.form-grid.three,.stats,.skills-grid,.choice-row,.spell-filters,.caster-grid,.card-grid{grid-template-columns:1fr}
+      .summary-grid,.summary-stats{grid-template-columns:repeat(2,1fr)}
+      .name-row,.class-row{grid-template-columns:1fr}
+      .tabs{position:static}
+      .modal{padding:18px}
     }
 
     @media print{
-      @page{
-        size:A4;
-        margin:12mm;
-      }
+      @page{size:A4;margin:10mm}
       body{
         background:white!important;
         color:#111!important;
@@ -165,9 +629,7 @@
         -webkit-print-color-adjust:exact;
         print-color-adjust:exact;
       }
-      body:before, .wrap{
-        display:none!important;
-      }
+      body:before,body:after,.wrap{display:none!important}
       .print-report{
         display:block!important;
         font-family:Arial,Helvetica,sans-serif;
@@ -177,81 +639,143 @@
         page-break-after:always;
         break-after:page;
         border:2px solid #333;
-        border-radius:12px;
-        padding:14px;
-        min-height:260mm;
+        border-radius:10px;
+        padding:12px;
+        min-height:270mm;
+        position:relative;
+        overflow:hidden;
       }
-      .print-page:last-child{
-        page-break-after:auto;
-        break-after:auto;
+      .print-page:after{
+        content:var(--theme-watermark);
+        position:absolute;
+        right:18px;
+        bottom:8px;
+        font-size:92px;
+        opacity:.07;
       }
+      .print-page:last-child{page-break-after:auto;break-after:auto}
       .print-page h1{
         color:#111!important;
-        font-size:24px!important;
+        font-size:22px!important;
         line-height:1.1!important;
-        margin:0 0 12px!important;
+        margin:0 0 10px!important;
         text-shadow:none!important;
         border-bottom:2px solid #333;
-        padding-bottom:8px;
+        padding-bottom:7px;
       }
-      .print-grid{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-        gap:8px;
-        margin-bottom:12px;
-      }
-      .print-grid.three{
-        grid-template-columns:repeat(3,1fr);
-      }
+      .print-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:9px}
+      .print-grid.three{grid-template-columns:repeat(3,1fr)}
       .print-box{
         border:1px solid #777;
-        border-radius:8px;
-        padding:8px;
+        border-radius:7px;
+        padding:7px;
         page-break-inside:avoid;
         break-inside:avoid;
+        background:rgba(255,255,255,.72);
       }
-      .print-box.full{
-        grid-column:1 / -1;
-      }
+      .print-box.full{grid-column:1/-1}
       .print-box small{
         display:block;
         color:#666;
-        font-size:10px;
-        margin-bottom:3px;
+        font-size:9.5px;
+        margin-bottom:2px;
       }
-      .print-box strong{
-        font-size:14px;
+      .print-box strong{font-size:13px}
+      .print-section-title{font-size:16px;margin:10px 0 6px;color:#111}
+      .print-list{line-height:1.34;font-size:11px}
+      .print-skills{
+        columns:2;
+        column-gap:14px;
+        line-height:1.32;
+        font-size:10.5px;
       }
-      .print-section-title{
-        font-size:18px;
-        margin:14px 0 8px;
-        color:#111;
-      }
-      .print-list{
-        line-height:1.45;
-        font-size:13px;
+      .print-skill-line{
+        break-inside:avoid;
+        margin-bottom:2px;
       }
       .print-text{
         white-space:pre-wrap;
-        line-height:1.45;
-        font-size:13px;
-        min-height:80px;
+        line-height:1.35;
+        font-size:12px;
+        min-height:70px;
       }
-      .print-spell{
+      .print-page-two-layout{
+        display:grid;
+        grid-template-columns:1.25fr .75fr;
+        gap:10px;
+        align-items:start;
+      }
+      .print-portrait{
         border:1px solid #777;
         border-radius:8px;
-        padding:8px;
-        margin-bottom:7px;
+        min-height:180px;
+        overflow:hidden;
+        display:grid;
+        place-items:center;
+        color:#777;
+        font-size:12px;
+        text-align:center;
+      }
+      .print-portrait img{
+        width:100%;
+        max-height:250px;
+        object-fit:cover;
+        display:block;
+      }
+      .print-caster-cloud{
+        border:1.5px solid #555;
+        border-radius:28px 18px 28px 18px;
+        padding:9px;
+        margin-bottom:9px;
+        background:#f7f7f7;
         page-break-inside:avoid;
         break-inside:avoid;
       }
+      .print-caster-cloud h2{
+        font-size:15px;
+        margin:0 0 5px;
+      }
+      .print-caster-grid{
+        display:grid;
+        grid-template-columns:repeat(3,1fr);
+        gap:5px;
+      }
+      .print-caster-pill{
+        border:1px solid #777;
+        border-radius:7px;
+        padding:5px;
+        font-size:10px;
+      }
+      .print-spell-grid{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
+        gap:5px;
+      }
+      .print-spell{
+        border:1px solid #777;
+        border-radius:7px;
+        padding:5px;
+        min-height:58px;
+        page-break-inside:avoid;
+        break-inside:avoid;
+        font-size:9.2px;
+        line-height:1.22;
+      }
       .print-spell strong{
         display:block;
-        margin-bottom:3px;
+        margin-bottom:2px;
+        font-size:9.5px;
+      }
+      .hand-note{
+        margin-top:4px;
+        border:1px dashed #999;
+        border-radius:5px;
+        height:18px;
       }
     }
   </style>
 </head>
+
 <body class="medieval">
   <main class="wrap">
     <nav class="no-print">
@@ -259,53 +783,52 @@
         <a class="nav-link" href="index.html">← Archivio</a>
         <a class="nav-link" href="nomi.html">🪶 Generatore nomi</a>
       </div>
+
       <div class="nav-group">
         <button type="button" class="ghost" onclick="openThemeModal()">🎨 Tema</button>
         <button type="button" onclick="downloadPDF()">Scarica PDF</button>
       </div>
     </nav>
 
-
-    <div class="theme-modal-backdrop no-print" id="themeModal" role="dialog" aria-modal="true" aria-labelledby="themeModalTitle">
-      <div class="theme-modal">
-        <div class="theme-modal-head">
+    <div class="modal-backdrop no-print" id="themeModal">
+      <div class="modal">
+        <div class="modal-head">
           <div>
-            <h2 id="themeModalTitle">Scegli il tema</h2>
-            <p>Ogni tema cambia atmosfera, colori, bordi e dettagli della scheda.</p>
+            <h2>Scegli il tema</h2>
+            <p>Ogni tema cambia atmosfera, colori, dettagli e simboli di sfondo della scheda.</p>
           </div>
-          <button type="button" class="theme-close" onclick="closeThemeModal()" aria-label="Chiudi">×</button>
+          <button type="button" class="modal-close" onclick="closeModal('themeModal')">×</button>
         </div>
 
-        <div class="theme-card-grid">
-          <button type="button" class="theme-card medieval-preview active" data-theme="medieval">
-            <strong>⚔️ Medievale arcano</strong>
-            <span>Classico fantasy da pergamena, oro e magia antica.</span>
-          </button>
-          <button type="button" class="theme-card steampunk-preview" data-theme="steampunk">
-            <strong>⚙️ Steampunk</strong>
-            <span>Ottone, ingranaggi, fumo e officine alchemiche.</span>
-          </button>
-          <button type="button" class="theme-card cyberpunk-preview" data-theme="cyberpunk">
-            <strong>🧬 Cyberpunk magico</strong>
-            <span>Neon, incantesimi digitali e vicoli sintetici.</span>
-          </button>
-          <button type="button" class="theme-card forest-preview" data-theme="forest">
-            <strong>🌲 Fantasy boschivo</strong>
-            <span>Rune, radici, boschi antichi e magia naturale.</span>
-          </button>
-          <button type="button" class="theme-card vampire-preview" data-theme="vampire">
-            <strong>🩸 Gotico vampirico</strong>
-            <span>Castelli scuri, sangue, velluto e presagi pessimi.</span>
-          </button>
+        <div class="card-grid">
+          <button type="button" class="theme-card medieval-preview active" data-theme="medieval"><strong>⚔️ Medievale arcano</strong><span>Pergamena, oro, magia classica.</span></button>
+          <button type="button" class="theme-card steampunk-preview" data-theme="steampunk"><strong>⚙️ Steampunk</strong><span>Ottone, ingranaggi e alchimia industriale.</span></button>
+          <button type="button" class="theme-card cyberpunk-preview" data-theme="cyberpunk"><strong>🧬 Cyberpunk magico</strong><span>Neon, rune digitali e mana sintetico.</span></button>
+          <button type="button" class="theme-card forest-preview" data-theme="forest"><strong>🌲 Fantasy boschivo</strong><span>Radici, druidi e magia naturale.</span></button>
+          <button type="button" class="theme-card vampire-preview" data-theme="vampire"><strong>🩸 Gotico vampirico</strong><span>Castelli, sangue e nobiltà sinistra.</span></button>
         </div>
       </div>
     </div>
 
+    <div class="modal-backdrop no-print" id="pickerModal">
+      <div class="modal">
+        <div class="modal-head">
+          <div>
+            <h2 id="pickerTitle">Scegli</h2>
+            <p id="pickerSubtitle">Seleziona una voce.</p>
+          </div>
+          <button type="button" class="modal-close" onclick="closeModal('pickerModal')">×</button>
+        </div>
+        <div class="card-grid" id="pickerGrid"></div>
+      </div>
+    </div>
 
     <section class="hero no-print">
       <div class="eyebrow">Dungeons & Dragons 5e · scheda interattiva</div>
       <h1>Forgiatore di Personaggi</h1>
-      <p class="subtitle">Crea una scheda completa: identità, caratteristiche, abilità con competenze e maestrie, privilegi di classe per livello, incantesimi filtrati, immagine del personaggio, note libere e salvataggio PDF.</p>
+      <p class="subtitle">
+        Crea una scheda completa con multiclass, competenze, maestrie, CD incantesimi calcolata, filtri incantesimi, immagine, note libere e PDF in pagine ordinate.
+      </p>
     </section>
 
     <div class="tabs no-print">
@@ -321,60 +844,187 @@
       <div>
         <section class="section active" id="identity">
           <h2>Identità del personaggio</h2>
+
           <div class="form-grid">
-            <div><label for="charName">Nome personaggio</label><div class="name-row"><input id="charName" type="text" placeholder="Es. Tharion Ombrafonda" /><button type="button" onclick="openNameGenerator()">Genera</button></div></div>
-            <div><label for="level">Livello</label><select id="level"></select></div>
-            <div><label for="species">Razza / Specie</label><select id="species"><option>Umano</option><option>Elfo</option><option>Mezzelfo</option><option>Nano</option><option>Halfling</option><option>Gnomo</option><option>Mezzorco</option><option>Tiefling</option><option>Dragonide</option></select></div>
-            <div><label for="className">Classe</label><select id="className"></select></div>
-            <div><label for="background">Background</label><select id="background"><option>Accolito</option><option>Artigiano di Gilda</option><option>Ciarlatano</option><option>Criminale</option><option>Eremita</option><option>Eroe Popolare</option><option>Intrattenitore</option><option>Marinaio</option><option>Nobile</option><option>Saggio</option><option>Soldato</option><option>Viandante</option></select></div>
-            <div><label for="alignment">Allineamento</label><select id="alignment"><option>Legale Buono</option><option>Neutrale Buono</option><option>Caotico Buono</option><option>Legale Neutrale</option><option>Neutrale Puro</option><option>Caotico Neutrale</option><option>Legale Malvagio</option><option>Neutrale Malvagio</option><option>Caotico Malvagio</option></select></div>
+            <div>
+              <label for="charName">Nome personaggio</label>
+              <div class="name-row">
+                <input id="charName" type="text" placeholder="Es. Tharion Ombrafonda" />
+                <button type="button" onclick="openNameGenerator()">Genera</button>
+              </div>
+            </div>
+
+            <div>
+              <label>Razza / Specie</label>
+              <button type="button" class="select-card" onclick="openPicker('species')">
+                <strong id="speciesLabel">Umano</strong>
+                <small>Apri selezione razza/specie</small>
+              </button>
+            </div>
+
+            <div>
+              <label>Background</label>
+              <button type="button" class="select-card" onclick="openPicker('background')">
+                <strong id="backgroundLabel">Accolito</strong>
+                <small>Apri selezione background</small>
+              </button>
+            </div>
+
+            <div>
+              <label>Allineamento</label>
+              <button type="button" class="select-card" onclick="openPicker('alignment')">
+                <strong id="alignmentLabel">Legale Buono</strong>
+                <small>Apri selezione allineamento</small>
+              </button>
+            </div>
           </div>
+
+          <h3>Classi e multiclass</h3>
+          <p class="hint">Puoi aggiungere più classi. La somma dei livelli non può superare 20.</p>
+          <div id="classRows"></div>
+          <button type="button" class="ghost" onclick="addClassRow()">+ Aggiungi classe</button>
+          <div class="level-total" id="levelTotal">Livello totale: 1 / 20</div>
+
           <h3>Immagine personaggio</h3>
-          <label class="portrait-box" for="portraitInput"><img id="portraitPreview" class="hidden" alt="Ritratto personaggio" /><div class="portrait-placeholder" id="portraitPlaceholder"><strong>Carica ritratto</strong>Clicca qui per inserire un'immagine del personaggio.</div></label>
+          <label class="portrait-box" for="portraitInput">
+            <img id="portraitPreview" class="hidden" alt="Ritratto personaggio" />
+            <div class="portrait-placeholder" id="portraitPlaceholder">
+              <strong>Carica ritratto</strong>
+              Clicca qui per inserire un'immagine del personaggio.
+            </div>
+          </label>
           <input id="portraitInput" type="file" accept="image/*" class="hidden" />
         </section>
 
         <section class="section" id="stats">
           <h2>Caratteristiche</h2>
-          <div class="choice-row"><button class="choice active" type="button" id="rollChoice" onclick="setMethod('roll')"><strong>🎲 Tiro dei dadi</strong><span>4d6, scarta il più basso. Animazione D6 inclusa.</span></button><button class="choice" type="button" id="freeChoice" onclick="setMethod('free')"><strong>🖋 Metodo libero</strong><span>Inserisci manualmente valori, standard array o point buy.</span></button></div>
+
+          <div class="choice-row">
+            <button class="choice active" type="button" id="rollChoice" onclick="setMethod('roll')">
+              <strong>🎲 Tiro dei dadi</strong>
+              <span>4d6, scarta il più basso. Animazione D6 inclusa.</span>
+            </button>
+            <button class="choice" type="button" id="freeChoice" onclick="setMethod('free')">
+              <strong>🖋 Metodo libero</strong>
+              <span>Inserisci manualmente valori, standard array o point buy.</span>
+            </button>
+          </div>
+
           <div class="stats" id="statsGrid"></div>
-          <div id="rollTools" class="roller"><button type="button" onclick="rollAllStats()">Tira tutte le caratteristiche</button><button class="ghost" type="button" onclick="clearStats()">Svuota valori</button></div>
-          <div class="dice-stage" id="diceStage"><div class="die">⚀</div><div class="die">⚁</div><div class="die">⚂</div><div class="die">⚃</div></div>
+
+          <div class="derived-grid">
+            <div class="derived-box"><small>Bonus competenza</small><strong id="profBonusBox">+2</strong></div>
+            <div class="derived-box"><small>Classe armatura base</small><strong id="armorClassBox">10</strong></div>
+            <div class="derived-box"><small>Iniziativa</small><strong id="initiativeBox">+0</strong></div>
+            <div class="derived-box"><small>Velocità</small><input id="speed" type="text" value="9 m" /></div>
+            <div class="derived-box"><small>Punti ferita max</small><input id="hpMax" type="number" min="1" placeholder="—" /></div>
+            <div class="derived-box"><small>Ispirazione</small><input id="inspiration" type="text" placeholder="Sì/No" /></div>
+          </div>
+
+          <div id="rollTools" class="roller">
+            <button type="button" onclick="rollAllStats()">Tira tutte le caratteristiche</button>
+            <button class="ghost" type="button" onclick="clearStats()">Svuota valori</button>
+          </div>
+
+          <div class="dice-stage" id="diceStage">
+            <div class="die">⚀</div><div class="die">⚁</div><div class="die">⚂</div><div class="die">⚃</div>
+          </div>
+
           <div class="roll-log" id="rollLog">Metodo attivo: 4d6, scarta il risultato più basso.</div>
         </section>
 
-        <section class="section" id="skills"><h2>Abilità, competenze e maestrie</h2><p class="hint">Clicca il cerchio per la competenza. Clicca la stellina per la maestria: attiva automaticamente anche la competenza. Se riclicchi, si disattiva.</p><div class="skills-grid" id="skillsGrid"></div></section>
+        <section class="section" id="skills">
+          <h2>Abilità, competenze e maestrie</h2>
+          <p class="hint">
+            Clicca il cerchio per la competenza. Clicca la stellina per la maestria: attiva automaticamente anche la competenza.
+            Se riclicchi, si disattiva.
+          </p>
+          <div class="skills-grid" id="skillsGrid"></div>
+        </section>
 
-        <section class="section" id="features"><h2>Privilegi acquisiti per livello</h2><p class="hint">Mostra i privilegi principali della classe in base al livello selezionato.</p><div class="features-list" id="featuresList"></div></section>
+        <section class="section" id="features">
+          <h2>Privilegi acquisiti per livello</h2>
+          <p class="hint">Mostra i privilegi principali per ogni classe selezionata, rispettando il livello specifico di ciascuna classe.</p>
+          <div class="features-list" id="featuresList"></div>
+        </section>
 
         <section class="section" id="spells">
-          <h2>Incantesimi</h2><p class="hint">Lista filtrata in base alla classe e al livello del personaggio. È una base pratica, non l'intero manuale.</p>
-          <div class="spell-filters"><div><label for="spellLevelFilter">Livello incantesimo</label><select id="spellLevelFilter"><option value="all">Tutti disponibili</option><option value="0">Trucchetti</option><option value="1">Livello 1</option><option value="2">Livello 2</option><option value="3">Livello 3</option><option value="4">Livello 4</option><option value="5">Livello 5</option><option value="6">Livello 6</option><option value="7">Livello 7</option><option value="8">Livello 8</option><option value="9">Livello 9</option></select></div><div><label for="spellSearch">Cerca</label><input id="spellSearch" type="text" placeholder="Es. cura, fuoco, invisibilità..." /></div><div><label>&nbsp;</label><button type="button" onclick="clearSelectedSpells()">Svuota incantesimi scelti</button></div></div>
+          <h2>Incantesimi</h2>
+
+          <div class="caster-cloud">
+            <h3>Dati da incantatore</h3>
+            <div class="caster-grid" id="casterGrid"></div>
+          </div>
+
+          <p class="hint">
+            La lista viene filtrata in base alle classi da incantatore e ai relativi livelli. È una base pratica, non l'intero manuale.
+          </p>
+
+          <div class="spell-filters">
+            <div>
+              <label for="spellLevelFilter">Livello incantesimo</label>
+              <input id="spellLevelFilter" type="text" placeholder="all, 0, 1, 2..." value="all" />
+            </div>
+            <div>
+              <label for="spellSearch">Cerca</label>
+              <input id="spellSearch" type="text" placeholder="Es. cura, fuoco, invisibilità..." />
+            </div>
+            <div>
+              <label>&nbsp;</label>
+              <button type="button" onclick="clearSelectedSpells()">Svuota incantesimi scelti</button>
+            </div>
+          </div>
+
           <div class="spell-list" id="spellList"></div>
         </section>
 
         <section class="section" id="notes">
           <h2>Testo libero e note</h2>
+
           <div class="form-grid">
-            <div><label for="personality">Personalità, ideali, legami, difetti</label><textarea id="personality" placeholder="Scrivi qui tratti caratteriali, ideali, legami e difetti..."></textarea></div>
-            <div><label for="backstory">Backstory</label><textarea id="backstory" placeholder="Da dove viene? Cosa vuole? Chi gli ha rovinato la giornata?"></textarea></div>
-            <div><label for="equipment">Equipaggiamento / tesori</label><textarea id="equipment" placeholder="Armi, armature, oggetti magici, monete..."></textarea></div>
-            <div><label for="freeNotes">Riquadro libero</label><textarea id="freeNotes" placeholder="Scrivi liberamente tutto quello che vuoi..."></textarea></div>
+            <div>
+              <label for="personality">Personalità, ideali, legami, difetti</label>
+              <textarea id="personality" placeholder="Scrivi qui tratti caratteriali, ideali, legami e difetti..."></textarea>
+            </div>
+            <div>
+              <label for="backstory">Backstory</label>
+              <textarea id="backstory" placeholder="Da dove viene? Cosa vuole? Chi gli ha rovinato la giornata?"></textarea>
+            </div>
+            <div>
+              <label for="equipment">Equipaggiamento / tesori</label>
+              <textarea id="equipment" placeholder="Armi, armature, oggetti magici, monete..."></textarea>
+            </div>
+            <div>
+              <label for="freeNotes">Riquadro libero</label>
+              <textarea id="freeNotes" placeholder="Scrivi liberamente tutto quello che vuoi..."></textarea>
+            </div>
           </div>
         </section>
       </div>
 
       <aside class="summary" id="printSheet">
-        <h2>Scheda riepilogo</h2><p class="pdf-only">Scheda esportata dalla pagina DnD 5e.</p>
+        <h2>Scheda riepilogo</h2>
+
         <div class="summary-grid">
-          <div class="summary-item"><small>Nome</small><strong id="sumName">Senza nome</strong></div><div class="summary-item"><small>Livello</small><strong id="sumLevel">1</strong></div><div class="summary-item"><small>Razza / Specie</small><strong id="sumSpecies">Umano</strong></div><div class="summary-item"><small>Classe</small><strong id="sumClass">Barbaro</strong></div><div class="summary-item"><small>Background</small><strong id="sumBackground">Accolito</strong></div><div class="summary-item"><small>Allineamento</small><strong id="sumAlignment">Legale Buono</strong></div><div class="summary-item"><small>Bonus competenza</small><strong id="sumProf">+2</strong></div><div class="summary-item"><small>Metodo caratteristiche</small><strong id="sumMethod">Dadi</strong></div>
+          <div class="summary-item"><small>Nome</small><strong id="sumName">Senza nome</strong></div>
+          <div class="summary-item"><small>Livello totale</small><strong id="sumLevel">1</strong></div>
+          <div class="summary-item"><small>Razza / Specie</small><strong id="sumSpecies">Umano</strong></div>
+          <div class="summary-item"><small>Classi</small><strong id="sumClass">Barbaro 1</strong></div>
+          <div class="summary-item"><small>Background</small><strong id="sumBackground">Accolito</strong></div>
+          <div class="summary-item"><small>Allineamento</small><strong id="sumAlignment">Legale Buono</strong></div>
+          <div class="summary-item"><small>Bonus competenza</small><strong id="sumProf">+2</strong></div>
+          <div class="summary-item"><small>Metodo caratteristiche</small><strong id="sumMethod">Dadi</strong></div>
         </div>
-        <h2>Caratteristiche</h2><div class="summary-stats" id="summaryStats"></div>
+
+        <h2>Caratteristiche</h2>
+        <div class="summary-stats" id="summaryStats"></div>
+
         <div class="summary-box"><small>Competenze abilità</small><div id="sumSkillProfs">Nessuna</div></div>
         <div class="summary-box"><small>Maestrie abilità</small><div id="sumSkillExpertise">Nessuna</div></div>
-        <div class="summary-box"><small>Privilegi di classe</small><div id="sumFeatures">—</div></div>
+        <div class="summary-box"><small>Incantatore</small><div id="sumCaster">—</div></div>
         <div class="summary-box"><small>Incantesimi scelti</small><div id="sumSpells">Nessuno</div></div>
         <div class="summary-box"><small>Note rapide</small><div id="sumNotes">—</div></div>
+
         <p class="note">Per scaricare in PDF: premi “Scarica PDF”, poi scegli “Salva come PDF” dalla finestra di stampa.</p>
       </aside>
     </section>
@@ -387,7 +1037,7 @@
     </article>
 
     <article class="print-page">
-      <h1>Note e testo libero</h1>
+      <h1>Note, immagine e dettagli liberi</h1>
       <div id="printPageTwo"></div>
     </article>
 
@@ -397,30 +1047,645 @@
     </article>
   </section>
 
-
   <script>
-    const classFeatures={"Barbaro":{spellcaster:false,features:[[1,"Ira; Difesa senza armatura"],[2,"Attacco irruento; Percezione del pericolo"],[3,"Cammino primordiale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra; Movimento veloce"],[7,"Istinto ferino"],[9,"Critico brutale"],[11,"Ira implacabile"],[15,"Ira persistente"],[20,"Campione primordiale"]]},"Bardo":{spellcaster:true,features:[[1,"Ispirazione bardica; Incantesimi"],[2,"Factotum; Canto di riposo"],[3,"Collegio bardico; Maestria"],[4,"Aumento caratteristiche / Talento"],[5,"Fonte di ispirazione"],[6,"Controincanto"],[10,"Segreti magici"],[20,"Ispirazione superiore"]]},"Chierico":{spellcaster:true,features:[[1,"Incantesimi; Dominio divino"],[2,"Incanalare divinità"],[4,"Aumento caratteristiche / Talento"],[5,"Distruggere non morti"],[8,"Colpo divino / Incantesimi potenti"],[10,"Intervento divino"],[20,"Intervento divino migliorato"]]},"Druido":{spellcaster:true,features:[[1,"Druidico; Incantesimi"],[2,"Forma selvatica; Circolo druidico"],[4,"Aumento caratteristiche / Talento"],[18,"Corpo senza tempo; Incantesimi bestiali"],[20,"Arciduido"]]},"Guerriero":{spellcaster:false,features:[[1,"Stile di combattimento; Recuperare energie"],[2,"Azione impetuosa"],[3,"Archetipo marziale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[9,"Indomito"],[11,"Attacco extra migliorato"],[20,"Quattro attacchi"]]},"Ladro":{spellcaster:false,features:[[1,"Maestria; Attacco furtivo; Gergo ladresco"],[2,"Azione scaltra"],[3,"Archetipo ladresco"],[4,"Aumento caratteristiche / Talento"],[5,"Schivata prodigiosa"],[7,"Elusione"],[11,"Talento affidabile"],[20,"Colpo di fortuna"]]},"Mago":{spellcaster:true,features:[[1,"Incantesimi; Recupero arcano"],[2,"Tradizione arcana"],[4,"Aumento caratteristiche / Talento"],[18,"Padronanza degli incantesimi"],[20,"Incantesimi distintivi"]]},"Monaco":{spellcaster:false,features:[[1,"Difesa senza armatura; Arti marziali"],[2,"Ki; Movimento senza armatura"],[3,"Tradizione monastica; Deviare proiettili"],[4,"Aumento caratteristiche / Talento; Caduta lenta"],[5,"Attacco extra; Colpo stordente"],[7,"Elusione; Mente immobile"],[20,"Perfezione interiore"]]},"Paladino":{spellcaster:true,features:[[1,"Percezione del divino; Imposizione delle mani"],[2,"Stile di combattimento; Incantesimi; Punizione divina"],[3,"Giuramento sacro; Salute divina"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[6,"Aura di protezione"],[20,"Privilegio supremo del giuramento"]]},"Ranger":{spellcaster:true,features:[[1,"Nemico prescelto; Esploratore nato"],[2,"Stile di combattimento; Incantesimi"],[3,"Archetipo ranger"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[10,"Nascondersi in piena vista"],[20,"Sterminatore di nemici"]]},"Stregone":{spellcaster:true,features:[[1,"Incantesimi; Origine stregonesca"],[2,"Fonte di magia"],[3,"Metamagia"],[4,"Aumento caratteristiche / Talento"],[20,"Ripristino stregonesco"]]},"Warlock":{spellcaster:true,features:[[1,"Patrono ultraterreno; Magia del patto"],[2,"Suppliche occulte"],[3,"Dono del patto"],[4,"Aumento caratteristiche / Talento"],[11,"Arcanum mistico"],[20,"Maestro dell'occulto"]]}};
-    const stats=[{key:"str",label:"Forza"},{key:"dex",label:"Destrezza"},{key:"con",label:"Costituzione"},{key:"int",label:"Intelligenza"},{key:"wis",label:"Saggezza"},{key:"cha",label:"Carisma"}];
-    const skills=[["Acrobazia","dex"],["Addestrare Animali","wis"],["Arcano","int"],["Atletica","str"],["Furtività","dex"],["Indagare","int"],["Inganno","cha"],["Intimidire","cha"],["Intrattenere","cha"],["Intuizione","wis"],["Medicina","wis"],["Natura","int"],["Percezione","wis"],["Persuasione","cha"],["Rapidità di Mano","dex"],["Religione","int"],["Sopravvivenza","wis"],["Storia","int"]].map(([name,stat])=>({name,stat,proficient:false,expertise:false}));
-    const spellDB=[{n:"Luce",l:0,c:["Bardo","Chierico","Mago","Stregone"],d:"Illumina un oggetto."},{n:"Mano Magica",l:0,c:["Bardo","Mago","Stregone","Warlock"],d:"Una mano spettrale manipola oggetti a distanza."},{n:"Dardo di Fuoco",l:0,c:["Mago","Stregone"],d:"Attacco a distanza infuocato."},{n:"Taumaturgia",l:0,c:["Chierico"],d:"Piccoli effetti sovrannaturali scenici."},{n:"Guida",l:0,c:["Chierico","Druido"],d:"Bonus a una prova di caratteristica."},{n:"Deflagrazione Occulta",l:0,c:["Warlock"],d:"Il trucchetto iconico del warlock."},{n:"Cura Ferite",l:1,c:["Bardo","Chierico","Druido","Paladino","Ranger"],d:"Recupera punti ferita a contatto."},{n:"Parola Guaritrice",l:1,c:["Bardo","Chierico","Druido"],d:"Cura a distanza come azione bonus."},{n:"Dardo Incantato",l:1,c:["Mago","Stregone"],d:"Dardi di forza che colpiscono automaticamente."},{n:"Scudo",l:1,c:["Mago","Stregone"],d:"Reazione difensiva molto forte."},{n:"Armatura Magica",l:1,c:["Mago","Stregone"],d:"Protezione magica senza armatura."},{n:"Charme su Persone",l:1,c:["Bardo","Druido","Mago","Stregone","Warlock"],d:"Influenza una creatura umanoide."},{n:"Benedizione",l:1,c:["Chierico","Paladino"],d:"Bonus a tiri per colpire e salvezza."},{n:"Marchio del Cacciatore",l:1,c:["Ranger"],d:"Danni extra contro una preda scelta."},{n:"Punizione Tonante",l:1,c:["Paladino"],d:"Colpo potenziato e scenico."},{n:"Invisibilità",l:2,c:["Bardo","Mago","Stregone","Warlock"],d:"Rende invisibile una creatura."},{n:"Ragnatela",l:2,c:["Mago","Stregone"],d:"Controllo area appiccicoso."},{n:"Passo Velato",l:2,c:["Mago","Stregone","Warlock"],d:"Teletrasporto breve come azione bonus."},{n:"Ristorare Inferiore",l:2,c:["Bardo","Chierico","Druido","Paladino","Ranger"],d:"Rimuove condizioni e malattie."},{n:"Palla di Fuoco",l:3,c:["Mago","Stregone"],d:"Esplosione di fuoco."},{n:"Controincantesimo",l:3,c:["Mago","Stregone","Warlock"],d:"Interrompe un incantesimo nemico."},{n:"Rinascita",l:3,c:["Chierico","Paladino"],d:"Riporta in vita una creatura morta da poco."},{n:"Evoca Animali",l:3,c:["Druido","Ranger"],d:"Evoca creature bestiali alleate."},{n:"Porta Dimensionale",l:4,c:["Bardo","Mago","Stregone","Warlock"],d:"Teletrasporto a media distanza."},{n:"Metamorfosi",l:4,c:["Bardo","Druido","Mago","Stregone"],d:"Trasforma una creatura."},{n:"Colpo Infuocato",l:5,c:["Chierico"],d:"Colonna di fuoco divino."},{n:"Teletrasporto",l:7,c:["Bardo","Mago","Stregone"],d:"Trasporto istantaneo a grande distanza."},{n:"Desiderio",l:9,c:["Mago","Stregone"],d:"Uno degli incantesimi più potenti."}];
-    const spellProgression={full:[0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9],half:[0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5],pact:[0,1,1,2,2,3,3,4,4,5,5,5,5,5,5,5,5,5,5,5,5],none:[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]};
-    const casterType={"Bardo":"full","Chierico":"full","Druido":"full","Mago":"full","Stregone":"full","Paladino":"half","Ranger":"half","Warlock":"pact","Barbaro":"none","Guerriero":"none","Ladro":"none","Monaco":"none"};
-    let method="roll";let selectedSpells=new Set();const $=id=>document.getElementById(id);
+    const pickers = {
+      species: {
+        title: "Scegli razza / specie",
+        subtitle: "Seleziona l'origine del personaggio.",
+        selected: "Umano",
+        labelId: "speciesLabel",
+        options: [
+          ["Umano","Versatile, ambizioso, adattabile."],
+          ["Elfo","Elegante, longevo, legato alla magia."],
+          ["Mezzelfo","Tra due mondi, carismatico e flessibile."],
+          ["Nano","Resistente, testardo, forgiato nella pietra."],
+          ["Halfling","Piccolo, fortunato, sorprendentemente coraggioso."],
+          ["Gnomo","Curioso, brillante, pericoloso con gli ingranaggi."],
+          ["Mezzorco","Forte, ruvido, più profondo di quanto sembri."],
+          ["Tiefling","Sangue infernale, fascino oscuro."],
+          ["Dragonide","Discendenza draconica e presenza imponente."]
+        ]
+      },
+      background: {
+        title: "Scegli background",
+        subtitle: "Da dove arriva il personaggio prima dell'avventura?",
+        selected: "Accolito",
+        labelId: "backgroundLabel",
+        options: [
+          ["Accolito","Templi, fede, rituali e segreti religiosi."],
+          ["Artigiano di Gilda","Mestiere, contatti e orgoglio professionale."],
+          ["Ciarlatano","Falsi nomi, truffe e sorrisi troppo convincenti."],
+          ["Criminale","Vicoli, contatti loschi e mani veloci."],
+          ["Eremita","Isolamento, rivelazioni e strane abitudini."],
+          ["Eroe Popolare","Difensore del popolo, leggenda locale."],
+          ["Intrattenitore","Palchi, applausi e drammi inutilmente teatrali."],
+          ["Marinaio","Navi, tempeste e bestemmie contro il mare."],
+          ["Nobile","Titoli, privilegi e problemi familiari enormi."],
+          ["Saggio","Biblioteche, teorie e polvere negli occhi."],
+          ["Soldato","Disciplina, guerra e vecchi commilitoni."],
+          ["Viandante","Strade, sopravvivenza e mappe mai precise."]
+        ]
+      },
+      alignment: {
+        title: "Scegli allineamento",
+        subtitle: "Non è una gabbia: è un punto di partenza interpretativo.",
+        selected: "Legale Buono",
+        labelId: "alignmentLabel",
+        options: [
+          ["Legale Buono","Ordine e bontà, anche quando costa."],
+          ["Neutrale Buono","Aiutare gli altri prima delle regole."],
+          ["Caotico Buono","Cuore giusto, metodi discutibili."],
+          ["Legale Neutrale","Regole, codici, struttura."],
+          ["Neutrale Puro","Equilibrio, pragmatismo o indifferenza cosmica."],
+          ["Caotico Neutrale","Libertà personale sopra tutto."],
+          ["Legale Malvagio","Controllo, potere, regole usate come armi."],
+          ["Neutrale Malvagio","Egoismo pratico, senza troppi rituali."],
+          ["Caotico Malvagio","Distruzione, impulso e pessime decisioni."]
+        ]
+      }
+    };
+
+    const classData = {
+      "Barbaro": {desc:"Ira, forza bruta e poca pazienza.", caster:"none", ability:null, features:[[1,"Ira; Difesa senza armatura"],[2,"Attacco irruento; Percezione del pericolo"],[3,"Cammino primordiale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra; Movimento veloce"],[7,"Istinto ferino"],[9,"Critico brutale"],[11,"Ira implacabile"],[15,"Ira persistente"],[20,"Campione primordiale"]]},
+      "Bardo": {desc:"Magia, parole taglienti e pessime canzoni.", caster:"full", ability:"cha", features:[[1,"Ispirazione bardica; Incantesimi"],[2,"Factotum; Canto di riposo"],[3,"Collegio bardico; Maestria"],[4,"Aumento caratteristiche / Talento"],[5,"Fonte di ispirazione"],[6,"Controincanto"],[10,"Segreti magici"],[20,"Ispirazione superiore"]]},
+      "Chierico": {desc:"Fede, miracoli e martelli sacri.", caster:"full", ability:"wis", features:[[1,"Incantesimi; Dominio divino"],[2,"Incanalare divinità"],[4,"Aumento caratteristiche / Talento"],[5,"Distruggere non morti"],[8,"Colpo divino / Incantesimi potenti"],[10,"Intervento divino"],[20,"Intervento divino migliorato"]]},
+      "Druido": {desc:"Natura, forme selvatiche e giudizi sugli urbanisti.", caster:"full", ability:"wis", features:[[1,"Druidico; Incantesimi"],[2,"Forma selvatica; Circolo druidico"],[4,"Aumento caratteristiche / Talento"],[18,"Corpo senza tempo; Incantesimi bestiali"],[20,"Arciduido"]]},
+      "Guerriero": {desc:"Tecnica, armi e problemi risolti frontalmente.", caster:"none", ability:null, features:[[1,"Stile di combattimento; Recuperare energie"],[2,"Azione impetuosa"],[3,"Archetipo marziale"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[9,"Indomito"],[11,"Attacco extra migliorato"],[20,"Quattro attacchi"]]},
+      "Ladro": {desc:"Furtività, precisione e tasche altrui.", caster:"none", ability:null, features:[[1,"Maestria; Attacco furtivo; Gergo ladresco"],[2,"Azione scaltra"],[3,"Archetipo ladresco"],[4,"Aumento caratteristiche / Talento"],[5,"Schivata prodigiosa"],[7,"Elusione"],[11,"Talento affidabile"],[20,"Colpo di fortuna"]]},
+      "Mago": {desc:"Studio, libri e potere scritto male sui margini.", caster:"full", ability:"int", features:[[1,"Incantesimi; Recupero arcano"],[2,"Tradizione arcana"],[4,"Aumento caratteristiche / Talento"],[18,"Padronanza degli incantesimi"],[20,"Incantesimi distintivi"]]},
+      "Monaco": {desc:"Disciplina, ki e calci filosofici.", caster:"none", ability:null, features:[[1,"Difesa senza armatura; Arti marziali"],[2,"Ki; Movimento senza armatura"],[3,"Tradizione monastica; Deviare proiettili"],[4,"Aumento caratteristiche / Talento; Caduta lenta"],[5,"Attacco extra; Colpo stordente"],[7,"Elusione; Mente immobile"],[20,"Perfezione interiore"]]},
+      "Paladino": {desc:"Giuramenti, aure e punizioni divine.", caster:"half", ability:"cha", features:[[1,"Percezione del divino; Imposizione delle mani"],[2,"Stile di combattimento; Incantesimi; Punizione divina"],[3,"Giuramento sacro; Salute divina"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[6,"Aura di protezione"],[20,"Privilegio supremo del giuramento"]]},
+      "Ranger": {desc:"Preda, natura e frecce piazzate bene.", caster:"half", ability:"wis", features:[[1,"Nemico prescelto; Esploratore nato"],[2,"Stile di combattimento; Incantesimi"],[3,"Archetipo ranger"],[4,"Aumento caratteristiche / Talento"],[5,"Attacco extra"],[10,"Nascondersi in piena vista"],[20,"Sterminatore di nemici"]]},
+      "Stregone": {desc:"Magia nel sangue e autocontrollo opzionale.", caster:"full", ability:"cha", features:[[1,"Incantesimi; Origine stregonesca"],[2,"Fonte di magia"],[3,"Metamagia"],[4,"Aumento caratteristiche / Talento"],[20,"Ripristino stregonesco"]]},
+      "Warlock": {desc:"Patti discutibili, poteri ottimi.", caster:"pact", ability:"cha", features:[[1,"Patrono ultraterreno; Magia del patto"],[2,"Suppliche occulte"],[3,"Dono del patto"],[4,"Aumento caratteristiche / Talento"],[11,"Arcanum mistico"],[20,"Maestro dell'occulto"]]}
+    };
+
+    const stats = [
+      { key:"str", label:"Forza" },
+      { key:"dex", label:"Destrezza" },
+      { key:"con", label:"Costituzione" },
+      { key:"int", label:"Intelligenza" },
+      { key:"wis", label:"Saggezza" },
+      { key:"cha", label:"Carisma" }
+    ];
+
+    const skills = [
+      ["Acrobazia","dex"],["Addestrare Animali","wis"],["Arcano","int"],["Atletica","str"],["Furtività","dex"],
+      ["Indagare","int"],["Inganno","cha"],["Intimidire","cha"],["Intrattenere","cha"],["Intuizione","wis"],
+      ["Medicina","wis"],["Natura","int"],["Percezione","wis"],["Persuasione","cha"],["Rapidità di Mano","dex"],
+      ["Religione","int"],["Sopravvivenza","wis"],["Storia","int"]
+    ].map(([name,stat]) => ({ name, stat, proficient:false, expertise:false }));
+
+    const spellDB = [
+      {n:"Luce",l:0,c:["Bardo","Chierico","Mago","Stregone"],d:"Illumina un oggetto."},
+      {n:"Mano Magica",l:0,c:["Bardo","Mago","Stregone","Warlock"],d:"Una mano spettrale manipola oggetti a distanza."},
+      {n:"Dardo di Fuoco",l:0,c:["Mago","Stregone"],d:"Attacco a distanza infuocato."},
+      {n:"Taumaturgia",l:0,c:["Chierico"],d:"Piccoli effetti sovrannaturali scenici."},
+      {n:"Guida",l:0,c:["Chierico","Druido"],d:"Bonus a una prova di caratteristica."},
+      {n:"Deflagrazione Occulta",l:0,c:["Warlock"],d:"Il trucchetto iconico del warlock."},
+      {n:"Cura Ferite",l:1,c:["Bardo","Chierico","Druido","Paladino","Ranger"],d:"Recupera punti ferita a contatto."},
+      {n:"Parola Guaritrice",l:1,c:["Bardo","Chierico","Druido"],d:"Cura a distanza come azione bonus."},
+      {n:"Dardo Incantato",l:1,c:["Mago","Stregone"],d:"Dardi di forza che colpiscono automaticamente."},
+      {n:"Scudo",l:1,c:["Mago","Stregone"],d:"Reazione difensiva molto forte."},
+      {n:"Armatura Magica",l:1,c:["Mago","Stregone"],d:"Protezione magica senza armatura."},
+      {n:"Charme su Persone",l:1,c:["Bardo","Druido","Mago","Stregone","Warlock"],d:"Influenza una creatura umanoide."},
+      {n:"Benedizione",l:1,c:["Chierico","Paladino"],d:"Bonus a tiri per colpire e salvezza."},
+      {n:"Marchio del Cacciatore",l:1,c:["Ranger"],d:"Danni extra contro una preda scelta."},
+      {n:"Punizione Tonante",l:1,c:["Paladino"],d:"Colpo potenziato e scenico."},
+      {n:"Invisibilità",l:2,c:["Bardo","Mago","Stregone","Warlock"],d:"Rende invisibile una creatura."},
+      {n:"Ragnatela",l:2,c:["Mago","Stregone"],d:"Controllo area appiccicoso."},
+      {n:"Passo Velato",l:2,c:["Mago","Stregone","Warlock"],d:"Teletrasporto breve come azione bonus."},
+      {n:"Ristorare Inferiore",l:2,c:["Bardo","Chierico","Druido","Paladino","Ranger"],d:"Rimuove condizioni e malattie."},
+      {n:"Palla di Fuoco",l:3,c:["Mago","Stregone"],d:"Esplosione di fuoco."},
+      {n:"Controincantesimo",l:3,c:["Mago","Stregone","Warlock"],d:"Interrompe un incantesimo nemico."},
+      {n:"Rinascita",l:3,c:["Chierico","Paladino"],d:"Riporta in vita una creatura morta da poco."},
+      {n:"Evoca Animali",l:3,c:["Druido","Ranger"],d:"Evoca creature bestiali alleate."},
+      {n:"Porta Dimensionale",l:4,c:["Bardo","Mago","Stregone","Warlock"],d:"Teletrasporto a media distanza."},
+      {n:"Metamorfosi",l:4,c:["Bardo","Druido","Mago","Stregone"],d:"Trasforma una creatura."},
+      {n:"Colpo Infuocato",l:5,c:["Chierico"],d:"Colonna di fuoco divino."},
+      {n:"Teletrasporto",l:7,c:["Bardo","Mago","Stregone"],d:"Trasporto istantaneo a grande distanza."},
+      {n:"Desiderio",l:9,c:["Mago","Stregone"],d:"Uno degli incantesimi più potenti."}
+    ];
+
+    const spellProgression = {
+      full:  [0,1,1,2,2,3,3,4,4,5,5,6,6,7,7,8,8,9,9,9,9],
+      half:  [0,0,1,1,1,2,2,2,2,3,3,3,3,4,4,4,4,5,5,5,5],
+      pact:  [0,1,1,2,2,3,3,4,4,5,5,5,5,5,5,5,5,5,5,5,5],
+      none:  [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    };
+
+    let state = {
+      species:"Umano",
+      background:"Accolito",
+      alignment:"Legale Buono",
+      classes:[{ className:"Barbaro", level:1 }],
+      method:"roll",
+      selectedSpells:new Set(),
+      pickerTarget:null,
+      classPickerIndex:null,
+      portraitData:null
+    };
+
+    const $ = id => document.getElementById(id);
+
+    function init(){
+      buildStats();
+      buildSkills();
+      bindTabs();
+      bindInputs();
+      bindPortrait();
+      bindThemeCards();
+      renderClassRows();
+
+      const params = new URLSearchParams(window.location.search);
+      const generatedName = params.get("name");
+      if (generatedName) $("charName").value = generatedName;
+
+      updateAll();
+    }
+
+    function bindTabs(){
+      document.querySelectorAll(".tab-btn").forEach(btn=>{
+        btn.addEventListener("click",()=>{
+          document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+          document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+          btn.classList.add("active");
+          $(btn.dataset.tab).classList.add("active");
+        });
+      });
+    }
+
+    function bindInputs(){
+      document.querySelectorAll("input, textarea").forEach(el=>{
+        el.addEventListener("input", updateAll);
+        el.addEventListener("change", updateAll);
+      });
+
+      $("spellLevelFilter").addEventListener("input", renderSpells);
+      $("spellSearch").addEventListener("input", renderSpells);
+    }
+
+    function bindThemeCards(){
+      document.querySelectorAll(".theme-card").forEach(card=>{
+        card.addEventListener("click",()=>setTheme(card.dataset.theme));
+      });
+    }
+
+    function bindPortrait(){
+      $("portraitInput").addEventListener("change", e=>{
+        const file=e.target.files[0];
+        if(!file) return;
+        const reader=new FileReader();
+        reader.onload=()=>{
+          state.portraitData=reader.result;
+          $("portraitPreview").src=reader.result;
+          $("portraitPreview").classList.remove("hidden");
+          $("portraitPlaceholder").classList.add("hidden");
+        };
+        reader.readAsDataURL(file);
+      });
+    }
 
     function openThemeModal(){
       $("themeModal").classList.add("open");
     }
-    function closeThemeModal(){
-      $("themeModal").classList.remove("open");
-    }
+
     function setTheme(theme){
       document.body.className=theme;
-      document.querySelectorAll(".theme-card").forEach(card=>card.classList.toggle("active",card.dataset.theme===theme));
-      closeThemeModal();
+      document.querySelectorAll(".theme-card").forEach(card=>{
+        card.classList.toggle("active", card.dataset.theme===theme);
+      });
+      closeModal("themeModal");
     }
-    document.addEventListener("click",e=>{
-      if(e.target && e.target.id==="themeModal") closeThemeModal();
+
+    function closeModal(id){
+      $(id).classList.remove("open");
+    }
+
+    document.addEventListener("click", e=>{
+      if(e.target.classList?.contains("modal-backdrop")) e.target.classList.remove("open");
     });
+
+    function openPicker(type, classIndex=null){
+      state.pickerTarget=type;
+      state.classPickerIndex=classIndex;
+
+      let title="Scegli";
+      let subtitle="Seleziona una voce.";
+      let options=[];
+      let selected="";
+
+      if(type==="class"){
+        title="Scegli classe";
+        subtitle="Seleziona la classe per questo livello/multiclass.";
+        options=Object.entries(classData).map(([name,data])=>[name,data.desc]);
+        selected=state.classes[classIndex].className;
+      } else {
+        title=pickers[type].title;
+        subtitle=pickers[type].subtitle;
+        options=pickers[type].options;
+        selected=pickers[type].selected;
+      }
+
+      $("pickerTitle").textContent=title;
+      $("pickerSubtitle").textContent=subtitle;
+      $("pickerGrid").innerHTML=options.map(([name,desc])=>`
+        <button type="button" class="pick-card ${name===selected ? "active":""}" onclick="selectPickerValue('${escapeAttr(type)}','${escapeAttr(name)}')">
+          <strong>${name}</strong>
+          <span>${desc}</span>
+        </button>
+      `).join("");
+
+      $("pickerModal").classList.add("open");
+    }
+
+    function selectPickerValue(type,value){
+      if(type==="class"){
+        state.classes[state.classPickerIndex].className=value;
+      } else {
+        state[type]=value;
+        pickers[type].selected=value;
+        $(pickers[type].labelId).textContent=value;
+      }
+
+      closeModal("pickerModal");
+      renderClassRows();
+      updateAll();
+    }
+
+    function escapeAttr(v){
+      return String(v).replaceAll("'","\\'");
+    }
+
+    function addClassRow(){
+      const total=getTotalLevel();
+      if(total>=20){
+        alert("Il livello totale massimo è 20.");
+        return;
+      }
+      state.classes.push({className:"Guerriero", level:1});
+      renderClassRows();
+      updateAll();
+    }
+
+    function removeClassRow(index){
+      if(state.classes.length===1){
+        alert("Devi avere almeno una classe.");
+        return;
+      }
+      state.classes.splice(index,1);
+      renderClassRows();
+      updateAll();
+    }
+
+    function renderClassRows(){
+      $("classRows").innerHTML=state.classes.map((row,index)=>`
+        <div class="class-row">
+          <div>
+            <label>Classe ${index+1}</label>
+            <button type="button" class="select-card" onclick="openPicker('class',${index})">
+              <strong>${row.className}</strong>
+              <small>${classData[row.className].desc}</small>
+            </button>
+          </div>
+          <div class="class-level">
+            <label>Livello</label>
+            <input type="number" min="1" max="20" value="${row.level}" onchange="setClassLevel(${index}, this.value)" oninput="setClassLevel(${index}, this.value)" />
+          </div>
+          <button type="button" class="danger" onclick="removeClassRow(${index})">Rimuovi</button>
+        </div>
+      `).join("");
+
+      $("levelTotal").textContent=`Livello totale: ${getTotalLevel()} / 20`;
+    }
+
+    function setClassLevel(index,value){
+      let n=Math.max(1, Math.min(20, Number(value)||1));
+      const others=state.classes.reduce((sum,row,i)=>sum+(i===index?0:Number(row.level)||0),0);
+      if(others+n>20){
+        n=20-others;
+        alert("La somma dei livelli non può superare 20.");
+      }
+      state.classes[index].level=n;
+      renderClassRows();
+      updateAll();
+    }
+
+    function getTotalLevel(){
+      return state.classes.reduce((sum,row)=>sum+(Number(row.level)||0),0);
+    }
+
+    function primaryClass(){
+      return state.classes[0]?.className || "Guerriero";
+    }
+
+    function buildStats(){
+      $("statsGrid").innerHTML="";
+      $("summaryStats").innerHTML="";
+      stats.forEach(stat=>{
+        $("statsGrid").innerHTML += `
+          <div class="stat">
+            <div class="stat-head">
+              <span class="stat-name">${stat.label}</span>
+              <span class="mod" id="${stat.key}Mod">mod —</span>
+            </div>
+            <input id="${stat.key}" type="number" min="3" max="30" placeholder="—" />
+          </div>
+        `;
+
+        $("summaryStats").innerHTML += `
+          <div class="summary-stat">
+            <small>${stat.label}</small>
+            <strong id="sum_${stat.key}">—</strong>
+            <small id="sum_${stat.key}_mod">mod —</small>
+          </div>
+        `;
+      });
+    }
+
+    function buildSkills(){
+      $("skillsGrid").innerHTML="";
+      skills.forEach((s,i)=>{
+        $("skillsGrid").innerHTML += `
+          <div class="skill">
+            <button class="prof-btn" type="button" id="prof_${i}" title="Competenza">●</button>
+            <button class="expert-btn" type="button" id="exp_${i}" title="Maestria">★</button>
+            <div>
+              <span class="skill-name">${s.name}</span>
+              <small>${statLabel(s.stat)}</small>
+            </div>
+            <div class="skill-total" id="skillTotal_${i}">—</div>
+          </div>
+        `;
+      });
+
+      skills.forEach((s,i)=>{
+        $(`prof_${i}`).addEventListener("click",()=>toggleProficiency(i));
+        $(`exp_${i}`).addEventListener("click",()=>toggleExpertise(i));
+      });
+    }
+
+    function statLabel(key){
+      return stats.find(s=>s.key===key)?.label || key;
+    }
+
+    function modifier(score){
+      const n=Number(score);
+      if(!n) return 0;
+      return Math.floor((n-10)/2);
+    }
+
+    function fmt(n){
+      return n>=0 ? `+${n}` : `${n}`;
+    }
+
+    function proficiencyBonus(){
+      return Math.ceil(getTotalLevel()/4)+1;
+    }
+
+    function toggleProficiency(i){
+      skills[i].proficient=!skills[i].proficient;
+      if(!skills[i].proficient) skills[i].expertise=false;
+      updateAll();
+    }
+
+    function toggleExpertise(i){
+      skills[i].expertise=!skills[i].expertise;
+      if(skills[i].expertise) skills[i].proficient=true;
+      updateAll();
+    }
+
+    function setMethod(selected){
+      state.method=selected;
+      $("rollChoice").classList.toggle("active",selected==="roll");
+      $("freeChoice").classList.toggle("active",selected==="free");
+      $("rollTools").classList.toggle("hidden",selected!=="roll");
+      $("diceStage").classList.toggle("hidden",selected!=="roll");
+      $("rollLog").textContent=selected==="roll"
+        ? "Metodo attivo: 4d6, scarta il risultato più basso."
+        : "Metodo libero attivo.";
+      updateAll();
+    }
+
+    function rollD6(){return Math.floor(Math.random()*6)+1}
+
+    function rollOneStat(){
+      const rolls=[rollD6(),rollD6(),rollD6(),rollD6()];
+      const sorted=[...rolls].sort((a,b)=>a-b);
+      return {rolls,total:sorted[1]+sorted[2]+sorted[3],dropped:sorted[0]};
+    }
+
+    async function rollAllStats(){
+      const dice=document.querySelectorAll(".die");
+      dice.forEach(d=>d.classList.add("rolling"));
+      $("rollLog").textContent="I dadi rotolano sulla pergamena...";
+      await new Promise(resolve=>setTimeout(resolve,900));
+
+      const results=stats.map(()=>rollOneStat());
+      stats.forEach((stat,index)=>$(stat.key).value=results[index].total);
+
+      dice.forEach((d,index)=>{
+        const face=results[0].rolls[index];
+        d.textContent=["⚀","⚁","⚂","⚃","⚄","⚅"][face-1];
+        d.classList.remove("rolling");
+      });
+
+      $("rollLog").innerHTML=results.map((r,i)=>
+        `${stats[i].label}: ${r.rolls.join(", ")} → <strong>${r.total}</strong> <small>(scartato ${r.dropped})</small>`
+      ).join("<br>");
+
+      updateAll();
+    }
+
+    function clearStats(){
+      stats.forEach(stat=>$(stat.key).value="");
+      $("rollLog").textContent="Valori svuotati.";
+      updateAll();
+    }
+
+    function openNameGenerator(){
+      window.open(`nomi.html?species=${encodeURIComponent(state.species)}`,"_blank");
+    }
+
+    function getMaxSpellLevelForClass(className, level){
+      const type=classData[className].caster;
+      return spellProgression[type][level] || 0;
+    }
+
+    function casterInfo(){
+      return state.classes
+        .filter(row=>classData[row.className].caster!=="none")
+        .map(row=>{
+          const ability=classData[row.className].ability;
+          const abilityMod=modifier($(ability)?.value);
+          return {
+            className:row.className,
+            level:row.level,
+            ability,
+            abilityLabel:statLabel(ability),
+            dc:8+proficiencyBonus()+abilityMod,
+            attack:proficiencyBonus()+abilityMod,
+            maxSpellLevel:getMaxSpellLevelForClass(row.className,row.level)
+          };
+        });
+    }
+
+    function renderCasterInfo(){
+      const info=casterInfo();
+
+      if(!info.length){
+        $("casterGrid").innerHTML=`<div class="caster-pill"><small>Incantatore</small><strong>Non disponibile</strong></div>`;
+        $("sumCaster").textContent="Nessuna classe da incantatore.";
+        return;
+      }
+
+      $("casterGrid").innerHTML=info.map(c=>`
+        <div class="caster-pill"><small>Classe</small><strong>${c.className} ${c.level}</strong></div>
+        <div class="caster-pill"><small>Caratteristica</small><strong>${c.abilityLabel}</strong></div>
+        <div class="caster-pill"><small>CD / Attacco</small><strong>${c.dc} / ${fmt(c.attack)}</strong></div>
+      `).join("");
+
+      $("sumCaster").innerHTML=info.map(c=>`${c.className}: ${c.abilityLabel}, CD ${c.dc}, attacco ${fmt(c.attack)}`).join("<br>");
+    }
+
+    function renderFeatures(){
+      let html="";
+      state.classes.forEach(row=>{
+        const items=(classData[row.className].features||[]).filter(([lvl])=>lvl<=row.level);
+        html += `<div class="feature"><strong>${row.className} ${row.level}</strong><span>${items.length ? items.map(([lvl,text])=>`L${lvl}: ${text}`).join("<br>") : "Nessun privilegio disponibile."}</span></div>`;
+      });
+      $("featuresList").innerHTML=html;
+
+      $("sumFeatures") && ($("sumFeatures").innerHTML=html);
+    }
+
+    function spellKey(sp){return `${sp.n}|${sp.l}`}
+
+    function renderSpells(){
+      const casterRows=state.classes.filter(row=>classData[row.className].caster!=="none");
+
+      if(!casterRows.length){
+        $("spellList").innerHTML=`<div class="spell"><strong>Nessuna classe da incantatore</strong><span>Aggiungi una classe incantatrice o semi-incantatrice per vedere gli incantesimi.</span></div>`;
+        return;
+      }
+
+      const filter=$("spellLevelFilter").value.trim().toLowerCase();
+      const search=$("spellSearch").value.trim().toLowerCase();
+
+      let available=[];
+      casterRows.forEach(row=>{
+        const maxLevel=getMaxSpellLevelForClass(row.className,row.level);
+        spellDB.forEach(sp=>{
+          if(sp.c.includes(row.className) && sp.l<=maxLevel){
+            available.push({...sp, sourceClass:row.className});
+          }
+        });
+      });
+
+      const seen=new Set();
+      available=available.filter(sp=>{
+        const key=`${sp.n}|${sp.l}|${sp.sourceClass}`;
+        if(seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+      let list=available.filter(sp =>
+        (filter==="all" || filter==="" || String(sp.l)===filter) &&
+        (!search || sp.n.toLowerCase().includes(search) || sp.d.toLowerCase().includes(search) || sp.sourceClass.toLowerCase().includes(search))
+      );
+
+      $("spellList").innerHTML=list.length ? list.map(sp=>{
+        const key=spellKey(sp);
+        const selected=state.selectedSpells.has(key);
+        return `
+          <div class="spell ${selected ? "selected":""}">
+            <div class="spell-top">
+              <strong>${sp.n} ${sp.l===0 ? "· Trucchetto" : "· Livello " + sp.l} · ${sp.sourceClass}</strong>
+              <button type="button" onclick="toggleSpell('${escapeAttr(key)}')">${selected ? "Rimuovi" : "Scegli"}</button>
+            </div>
+            <span>${sp.d}</span>
+          </div>
+        `;
+      }).join("") : `<div class="spell"><span>Nessun incantesimo trovato per questi filtri.</span></div>`;
+    }
+
+    function toggleSpell(key){
+      if(state.selectedSpells.has(key)) state.selectedSpells.delete(key);
+      else state.selectedSpells.add(key);
+      renderSpells();
+      updateAll(false);
+    }
+
+    function clearSelectedSpells(){
+      state.selectedSpells.clear();
+      renderSpells();
+      updateAll(false);
+    }
+
+    function updateSkills(){
+      const pb=proficiencyBonus();
+      skills.forEach((s,i)=>{
+        const statMod=modifier($(s.stat).value);
+        let total=statMod;
+        if(s.expertise) total += pb*2;
+        else if(s.proficient) total += pb;
+
+        $(`prof_${i}`).classList.toggle("active",s.proficient);
+        $(`exp_${i}`).classList.toggle("active",s.expertise);
+        $(`skillTotal_${i}`).textContent=fmt(total);
+      });
+
+      const profs=skills.filter(s=>s.proficient).map(s=>s.name);
+      const exps=skills.filter(s=>s.expertise).map(s=>s.name);
+
+      $("sumSkillProfs").textContent=profs.length ? profs.join(", ") : "Nessuna";
+      $("sumSkillExpertise").textContent=exps.length ? exps.join(", ") : "Nessuna";
+    }
+
+    function updateSummary(){
+      $("sumName").textContent=$("charName").value.trim() || "Senza nome";
+      $("sumLevel").textContent=getTotalLevel();
+      $("sumSpecies").textContent=state.species;
+      $("sumClass").textContent=state.classes.map(c=>`${c.className} ${c.level}`).join(" / ");
+      $("sumBackground").textContent=state.background;
+      $("sumAlignment").textContent=state.alignment;
+      $("sumProf").textContent=fmt(proficiencyBonus());
+      $("sumMethod").textContent=state.method==="roll" ? "Dadi" : "Libero";
+      $("profBonusBox").textContent=fmt(proficiencyBonus());
+
+      const dex=modifier($("dex").value);
+      $("armorClassBox").textContent=10+dex;
+      $("initiativeBox").textContent=fmt(dex);
+
+      stats.forEach(stat=>{
+        const value=$(stat.key).value;
+        const mod=value ? fmt(modifier(value)) : "—";
+        $(`${stat.key}Mod`).textContent=`mod ${mod}`;
+        $(`sum_${stat.key}`).textContent=value || "—";
+        $(`sum_${stat.key}_mod`).textContent=`mod ${mod}`;
+      });
+
+      const selected=[...state.selectedSpells].map(k=>k.split("|")[0]);
+      $("sumSpells").textContent=selected.length ? selected.join(", ") : "Nessuno";
+
+      const quick=[
+        $("personality").value.trim(),
+        $("backstory").value.trim(),
+        $("equipment").value.trim(),
+        $("freeNotes").value.trim()
+      ].filter(Boolean).join(" | ");
+
+      $("sumNotes").textContent=quick ? quick.slice(0,700) : "—";
+    }
+
+    function updateAll(renderSpellList=true){
+      updateSummary();
+      updateSkills();
+      renderFeatures();
+      renderCasterInfo();
+      if(renderSpellList) renderSpells();
+    }
 
     function escHtml(value){
       return String(value ?? "").replace(/[&<>"']/g, ch => ({
@@ -439,8 +1704,8 @@
 
       const profs=skills.filter(s=>s.proficient).map(s=>s.name);
       const exps=skills.filter(s=>s.expertise).map(s=>s.name);
-      const selected=[...selectedSpells].map(k=>{
-        const [name, lvl]=k.split("|");
+      const selected=[...state.selectedSpells].map(k=>{
+        const [name,lvl]=k.split("|");
         const spell=spellDB.find(sp=>sp.n===name && String(sp.l)===String(lvl));
         return spell || {n:name,l:lvl,d:""};
       });
@@ -456,27 +1721,34 @@
         const pb=proficiencyBonus();
         if(sk.expertise) total+=pb*2;
         else if(sk.proficient) total+=pb;
-        const tag=sk.expertise ? "★ maestria" : sk.proficient ? "● competenza" : "";
-        return `${sk.name} (${statLabel(sk.stat)}): ${fmt(total)} ${tag ? "· " + tag : ""}`;
-      }).join("<br>");
+        const tag=sk.expertise ? "★" : sk.proficient ? "●" : "";
+        return `<div class="print-skill-line">${escHtml(sk.name)} (${statLabel(sk.stat)}): <strong>${fmt(total)}</strong> ${tag}</div>`;
+      }).join("");
+
+      const featureRows=state.classes.map(row=>{
+        const items=(classData[row.className].features||[]).filter(([lvl])=>lvl<=row.level);
+        return `<strong>${row.className} ${row.level}</strong><br>${items.map(([lvl,text])=>`L${lvl}: ${escHtml(text)}`).join("<br>")}`;
+      }).join("<br><br>");
 
       $("printPageOne").innerHTML=`
         <div class="print-grid">
           <div class="print-box"><small>Nome</small><strong>${escHtml(textValue("charName","Senza nome"))}</strong></div>
-          <div class="print-box"><small>Livello</small><strong>${escHtml($("level").value)}</strong></div>
-          <div class="print-box"><small>Razza / Specie</small><strong>${escHtml($("species").value)}</strong></div>
-          <div class="print-box"><small>Classe</small><strong>${escHtml($("className").value)}</strong></div>
-          <div class="print-box"><small>Background</small><strong>${escHtml($("background").value)}</strong></div>
-          <div class="print-box"><small>Allineamento</small><strong>${escHtml($("alignment").value)}</strong></div>
+          <div class="print-box"><small>Livello totale</small><strong>${getTotalLevel()}</strong></div>
+          <div class="print-box"><small>Razza / Specie</small><strong>${escHtml(state.species)}</strong></div>
+          <div class="print-box"><small>Classi</small><strong>${escHtml(state.classes.map(c=>`${c.className} ${c.level}`).join(" / "))}</strong></div>
+          <div class="print-box"><small>Background</small><strong>${escHtml(state.background)}</strong></div>
+          <div class="print-box"><small>Allineamento</small><strong>${escHtml(state.alignment)}</strong></div>
           <div class="print-box"><small>Bonus competenza</small><strong>${fmt(proficiencyBonus())}</strong></div>
-          <div class="print-box"><small>Metodo caratteristiche</small><strong>${method==="roll" ? "Dadi" : "Libero"}</strong></div>
+          <div class="print-box"><small>CA base / Iniziativa</small><strong>${10+modifier($("dex").value)} / ${fmt(modifier($("dex").value))}</strong></div>
+          <div class="print-box"><small>Velocità</small><strong>${escHtml(textValue("speed","—"))}</strong></div>
+          <div class="print-box"><small>PF max / Ispirazione</small><strong>${escHtml(textValue("hpMax","—"))} / ${escHtml(textValue("inspiration","—"))}</strong></div>
         </div>
 
         <h2 class="print-section-title">Caratteristiche</h2>
         <div class="print-grid three">${statBoxes}</div>
 
         <h2 class="print-section-title">Abilità</h2>
-        <div class="print-box full print-list">${skillRows}</div>
+        <div class="print-box full print-skills">${skillRows}</div>
 
         <h2 class="print-section-title">Competenze e maestrie</h2>
         <div class="print-grid">
@@ -485,60 +1757,71 @@
         </div>
 
         <h2 class="print-section-title">Privilegi acquisiti</h2>
-        <div class="print-box full print-list">${$("sumFeatures").innerHTML || "—"}</div>
+        <div class="print-box full print-list">${featureRows || "—"}</div>
       `;
 
+      const portrait = state.portraitData
+        ? `<img src="${state.portraitData}" alt="Ritratto personaggio">`
+        : `Nessuna immagine caricata`;
+
       $("printPageTwo").innerHTML=`
-        <div class="print-grid">
-          <div class="print-box full">
-            <small>Personalità, ideali, legami, difetti</small>
-            <div class="print-text">${escHtml(textValue("personality"))}</div>
+        <div class="print-page-two-layout">
+          <div>
+            <div class="print-box full">
+              <small>Personalità, ideali, legami, difetti</small>
+              <div class="print-text">${escHtml(textValue("personality"))}</div>
+            </div>
+            <div class="print-box full">
+              <small>Backstory</small>
+              <div class="print-text">${escHtml(textValue("backstory"))}</div>
+            </div>
+            <div class="print-box full">
+              <small>Equipaggiamento / tesori</small>
+              <div class="print-text">${escHtml(textValue("equipment"))}</div>
+            </div>
+            <div class="print-box full">
+              <small>Riquadro libero</small>
+              <div class="print-text">${escHtml(textValue("freeNotes"))}</div>
+            </div>
           </div>
-          <div class="print-box full">
-            <small>Backstory</small>
-            <div class="print-text">${escHtml(textValue("backstory"))}</div>
-          </div>
-          <div class="print-box full">
-            <small>Equipaggiamento / tesori</small>
-            <div class="print-text">${escHtml(textValue("equipment"))}</div>
-          </div>
-          <div class="print-box full">
-            <small>Riquadro libero</small>
-            <div class="print-text">${escHtml(textValue("freeNotes"))}</div>
+          <div>
+            <h2 class="print-section-title">Ritratto</h2>
+            <div class="print-portrait">${portrait}</div>
           </div>
         </div>
       `;
 
-      $("printPageThree").innerHTML = selected.length
-        ? selected.map(sp=>`
-            <div class="print-spell">
-              <strong>${escHtml(sp.n)} ${Number(sp.l)===0 ? "· Trucchetto" : "· Livello " + escHtml(sp.l)}</strong>
-              <span>${escHtml(sp.d)}</span>
-            </div>
-          `).join("")
-        : `<div class="print-box full">Nessun incantesimo selezionato.</div>`;
+      const casterRows=casterInfo();
+      const casterHtml=casterRows.length ? casterRows.map(c=>`
+        <div class="print-caster-pill">
+          <strong>${escHtml(c.className)} ${c.level}</strong><br>
+          Caratt.: ${escHtml(c.abilityLabel)}<br>
+          CD: <strong>${c.dc}</strong> · Attacco: <strong>${fmt(c.attack)}</strong>
+        </div>
+      `).join("") : `<div class="print-caster-pill">Nessuna classe da incantatore.</div>`;
+
+      const spellsHtml=selected.length ? selected.map(sp=>`
+        <div class="print-spell">
+          <strong>${escHtml(sp.n)} ${Number(sp.l)===0 ? "· Trucchetto" : "· L" + escHtml(sp.l)}</strong>
+          ${escHtml(sp.d)}
+          <div class="hand-note"></div>
+        </div>
+      `).join("") : `<div class="print-box full">Nessun incantesimo selezionato.</div>`;
+
+      $("printPageThree").innerHTML=`
+        <div class="print-caster-cloud">
+          <h2>Dati da incantatore</h2>
+          <div class="print-caster-grid">${casterHtml}</div>
+        </div>
+        <div class="print-spell-grid">${spellsHtml}</div>
+      `;
     }
 
-    function init(){for(let i=1;i<=20;i++)$("level").innerHTML+=`<option value="${i}">Livello ${i}</option>`;Object.keys(classFeatures).forEach(c=>$("className").innerHTML+=`<option value="${c}">${c}</option>`);buildStats();buildSkills();bindTabs();bindInputs();bindPortrait();document.querySelectorAll(".theme-card").forEach(card=>card.onclick=()=>setTheme(card.dataset.theme));const p=new URLSearchParams(location.search);if(p.get("name"))$("charName").value=p.get("name");updateAll();}
-    function buildStats(){$("statsGrid").innerHTML="";$("summaryStats").innerHTML="";stats.forEach(s=>{$("statsGrid").innerHTML+=`<div class="stat"><div class="stat-head"><span class="stat-name">${s.label}</span><span class="mod" id="${s.key}Mod">mod —</span></div><input id="${s.key}" type="number" min="3" max="30" placeholder="—" /></div>`;$("summaryStats").innerHTML+=`<div class="summary-stat"><small>${s.label}</small><strong id="sum_${s.key}">—</strong><small id="sum_${s.key}_mod">mod —</small></div>`})}
-    function buildSkills(){$("skillsGrid").innerHTML="";skills.forEach((s,i)=>{$("skillsGrid").innerHTML+=`<div class="skill"><button class="prof-btn" type="button" id="prof_${i}" title="Competenza">●</button><button class="expert-btn" type="button" id="exp_${i}" title="Maestria">★</button><div><span class="skill-name">${s.name}</span><small>${statLabel(s.stat)}</small></div><div class="skill-total" id="skillTotal_${i}">—</div></div>`});skills.forEach((s,i)=>{$(`prof_${i}`).onclick=()=>toggleProficiency(i);$(`exp_${i}`).onclick=()=>toggleExpertise(i)})}
-    function bindTabs(){document.querySelectorAll(".tab-btn").forEach(b=>b.onclick=()=>{document.querySelectorAll(".tab-btn,.section").forEach(x=>x.classList.remove("active"));b.classList.add("active");$(b.dataset.tab).classList.add("active")})}
-    function bindInputs(){document.querySelectorAll("input,select,textarea").forEach(el=>{el.addEventListener("input",updateAll);el.addEventListener("change",updateAll)});$("spellLevelFilter").onchange=renderSpells;$("spellSearch").oninput=renderSpells}
-    function bindPortrait(){$("portraitInput").onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{$("portraitPreview").src=r.result;$("portraitPreview").classList.remove("hidden");$("portraitPlaceholder").classList.add("hidden")};r.readAsDataURL(f)}}
-    function statLabel(k){return stats.find(s=>s.key===k)?.label||k}function modifier(v){const n=Number(v);return n?Math.floor((n-10)/2):0}function fmt(n){return n>=0?`+${n}`:`${n}`}function proficiencyBonus(){return Math.ceil(Number($("level").value)/4)+1}
-    function toggleProficiency(i){skills[i].proficient=!skills[i].proficient;if(!skills[i].proficient)skills[i].expertise=false;updateAll()}function toggleExpertise(i){skills[i].expertise=!skills[i].expertise;if(skills[i].expertise)skills[i].proficient=true;updateAll()}
-    function setMethod(m){method=m;$("rollChoice").classList.toggle("active",m==="roll");$("freeChoice").classList.toggle("active",m==="free");$("rollTools").classList.toggle("hidden",m!=="roll");$("diceStage").classList.toggle("hidden",m!=="roll");$("rollLog").textContent=m==="roll"?"Metodo attivo: 4d6, scarta il risultato più basso.":"Metodo libero attivo.";updateAll()}
-    function rollD6(){return Math.floor(Math.random()*6)+1}function rollOneStat(){const r=[rollD6(),rollD6(),rollD6(),rollD6()],s=[...r].sort((a,b)=>a-b);return{rolls:r,total:s[1]+s[2]+s[3],dropped:s[0]}}
-    async function rollAllStats(){const dice=document.querySelectorAll(".die");dice.forEach(d=>d.classList.add("rolling"));$("rollLog").textContent="I dadi rotolano sulla pergamena...";await new Promise(r=>setTimeout(r,900));const res=stats.map(()=>rollOneStat());stats.forEach((s,i)=>$(s.key).value=res[i].total);dice.forEach((d,i)=>{d.textContent=["⚀","⚁","⚂","⚃","⚄","⚅"][res[0].rolls[i]-1];d.classList.remove("rolling")});$("rollLog").innerHTML=res.map((r,i)=>`${stats[i].label}: ${r.rolls.join(", ")} → <strong>${r.total}</strong> <small>(scartato ${r.dropped})</small>`).join("<br>");updateAll()}
-    function clearStats(){stats.forEach(s=>$(s.key).value="");$("rollLog").textContent="Valori svuotati.";updateAll()}function openNameGenerator(){window.open(`nomi.html?species=${encodeURIComponent($("species").value)}`,"_blank")}
-    function getMaxSpellLevel(){return spellProgression[casterType[$("className").value]||"none"][Number($("level").value)]}
-    function renderFeatures(){const items=(classFeatures[$("className").value]?.features||[]).filter(([lvl])=>lvl<=Number($("level").value));$("featuresList").innerHTML=items.length?items.map(([lvl,t])=>`<div class="feature"><strong>Livello ${lvl}</strong><span>${t}</span></div>`).join(""):`<div class="feature"><span>Nessun privilegio disponibile.</span></div>`;$("sumFeatures").innerHTML=items.length?items.map(([lvl,t])=>`<strong>L${lvl}</strong>: ${t}`).join("<br>"):"—"}
-    function spellKey(sp){return `${sp.n}|${sp.l}`}function esc(k){return k.replaceAll("'","\\'")}
-    function renderSpells(){const cls=$("className").value,max=getMaxSpellLevel(),f=$("spellLevelFilter").value,q=$("spellSearch").value.toLowerCase().trim();if(casterType[cls]==="none"){$("spellList").innerHTML=`<div class="spell"><strong>${cls}</strong><span>Questa classe non è incantatrice nella base 5e. Possiamo gestire sottoclassi magiche in un secondo step.</span></div>`;return}let list=spellDB.filter(sp=>sp.c.includes(cls)&&sp.l<=max&&(f==="all"||String(sp.l)===f)&&(!q||sp.n.toLowerCase().includes(q)||sp.d.toLowerCase().includes(q)));$("spellList").innerHTML=list.length?list.map(sp=>{const k=spellKey(sp),sel=selectedSpells.has(k);return`<div class="spell ${sel?"selected":""}"><div class="spell-top"><strong>${sp.n} ${sp.l===0?"· Trucchetto":"· Livello "+sp.l}</strong><button type="button" onclick="toggleSpell('${esc(k)}')">${sel?"Rimuovi":"Scegli"}</button></div><span>${sp.d}</span></div>`}).join(""):`<div class="spell"><span>Nessun incantesimo trovato.</span></div>`}
-    function toggleSpell(k){selectedSpells.has(k)?selectedSpells.delete(k):selectedSpells.add(k);renderSpells();updateAll(false)}function clearSelectedSpells(){selectedSpells.clear();renderSpells();updateAll(false)}
-    function updateSkills(){const pb=proficiencyBonus();skills.forEach((s,i)=>{let total=modifier($(s.stat).value);if(s.expertise)total+=pb*2;else if(s.proficient)total+=pb;$(`prof_${i}`).classList.toggle("active",s.proficient);$(`exp_${i}`).classList.toggle("active",s.expertise);$(`skillTotal_${i}`).textContent=fmt(total)});const profs=skills.filter(s=>s.proficient).map(s=>s.name),exps=skills.filter(s=>s.expertise).map(s=>s.name);$("sumSkillProfs").textContent=profs.length?profs.join(", "):"Nessuna";$("sumSkillExpertise").textContent=exps.length?exps.join(", "):"Nessuna"}
-    function updateSummary(){$("sumName").textContent=$("charName").value.trim()||"Senza nome";$("sumLevel").textContent=$("level").value;$("sumSpecies").textContent=$("species").value;$("sumClass").textContent=$("className").value;$("sumBackground").textContent=$("background").value;$("sumAlignment").textContent=$("alignment").value;$("sumProf").textContent=fmt(proficiencyBonus());$("sumMethod").textContent=method==="roll"?"Dadi":"Libero";stats.forEach(s=>{const v=$(s.key).value,mod=v?fmt(modifier(v)):"—";$(`${s.key}Mod`).textContent=`mod ${mod}`;$(`sum_${s.key}`).textContent=v||"—";$(`sum_${s.key}_mod`).textContent=`mod ${mod}`});const selected=[...selectedSpells].map(k=>k.split("|")[0]);$("sumSpells").textContent=selected.length?selected.join(", "):"Nessuno";const quick=[$("personality").value.trim(),$("backstory").value.trim(),$("equipment").value.trim(),$("freeNotes").value.trim()].filter(Boolean).join(" | ");$("sumNotes").textContent=quick?quick.slice(0,700):"—"}
-    function updateAll(renderSpellList=true){updateSummary();updateSkills();renderFeatures();if(renderSpellList)renderSpells()}function downloadPDF(){buildPrintReport();setTimeout(()=>window.print(),80)}
+    function downloadPDF(){
+      buildPrintReport();
+      setTimeout(()=>window.print(),80);
+    }
+
     init();
   </script>
 </body>
